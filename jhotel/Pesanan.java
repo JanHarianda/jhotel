@@ -1,10 +1,16 @@
+/** 
+ * kelas ini memodelkan sistem pesanan dalam memesan kamar hotel
+ * 
+ * @author (Jan Harianda Barus)
+ * @version (March 1, 2018)
+ */
+
 public class Pesanan
 {
-    // instance variables - replace the example below with your own
     private double biaya;
     private Customer pelanggan;
-    private string nama_pelanggan;
-    private string jenis_kamar;
+    private String nama_pelanggan;
+    private String jenis_kamar;
     private boolean isDiproses;
     private boolean isSelesai;
     
@@ -12,30 +18,56 @@ public class Pesanan
     {
         
     }
+   
+    public Pesanan(double biaya, Customer pelanggan)
+    {
+        this.biaya = biaya;
+        this.pelanggan = pelanggan;
+    }
+    
     public double getBiaya()
     {
         return biaya;
-    }   
+    }
+    
     public Customer getPelanggan()
     {
         return pelanggan;
     }
     
+    public boolean getStatusDiproses()
+    {
+        return isDiproses;
+    }
+    
     public boolean getStatusSelesai()
     {
-        return isSelesai;
+        return false;
     }
-    public void setPelanggan(Customer baru)
-    {
-        pelanggan = baru;
+    
+    
+    public void setBiaya(double biaya){
+        this.biaya=biaya;
     }
-    public void setStatusDiProses(boolean diproses)
-    {
-        isDiproses = diproses;
+        
+    public void setPelanggan(Customer baru){
+        
+        this.pelanggan = baru;
+    }
+    
+    public void setStatusDiProses(boolean diproses){
+        
+        this.isDiproses = diproses;
     }    
 
-    public void setStatusSelesai(boolean diproses)
+    public void setStatusSelesai(boolean diproses){
+        
+        this.isSelesai = diproses;
+    }
+    
+    //ini adalah method untuk print biaya
+    public void printData()
     {
-        isSelesai = diproses;
+        System.out.println("Total Biaya :" +biaya);
     }
 }

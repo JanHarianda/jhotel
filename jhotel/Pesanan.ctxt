@@ -1,0 +1,26 @@
+#BlueJ class context
+comment0.target=Pesanan
+comment0.text=\ \r\n\ kelas\ ini\ memodelkan\ sistem\ pesanan\ dalam\ memesan\ kamar\ hotel\r\n\ \r\n\ @author\ (Jan\ Harianda\ Barus)\r\n\ @version\ (March\ 1,\ 2018)\r\n
+comment1.params=
+comment1.target=Pesanan()
+comment10.params=diproses
+comment10.target=void\ setStatusSelesai(boolean)
+comment11.params=
+comment11.target=void\ printData()
+comment2.params=biaya\ pelanggan
+comment2.target=Pesanan(double,\ Customer)
+comment3.params=
+comment3.target=double\ getBiaya()
+comment4.params=
+comment4.target=Customer\ getPelanggan()
+comment5.params=
+comment5.target=boolean\ getStatusDiproses()
+comment6.params=
+comment6.target=boolean\ getStatusSelesai()
+comment7.params=biaya
+comment7.target=void\ setBiaya(double)
+comment8.params=baru
+comment8.target=void\ setPelanggan(Customer)
+comment9.params=diproses
+comment9.target=void\ setStatusDiProses(boolean)
+numComments=12
