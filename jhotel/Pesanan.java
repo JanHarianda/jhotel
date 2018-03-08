@@ -13,6 +13,7 @@ public class Pesanan
     private String jenis_kamar;
     private boolean isDiproses;
     private boolean isSelesai;
+    private Room kamar;
     
     public Pesanan()
     {
@@ -55,7 +56,7 @@ public class Pesanan
         this.pelanggan = baru;
     }
     
-    public void setStatusDiProses(boolean diproses){
+    public void setStatusDiproses(boolean diproses){
         
         this.isDiproses = diproses;
     }    
@@ -63,6 +64,10 @@ public class Pesanan
     public void setStatusSelesai(boolean diproses){
         
         this.isSelesai = diproses;
+    }
+    
+    public void setRoom(Room kamar){
+        this.kamar = kamar;
     }
     
     //ini adalah method untuk print biaya

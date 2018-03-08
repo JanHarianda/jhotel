@@ -17,6 +17,7 @@ comment7.params=y_coord
 comment7.target=void\ setY(float)
 comment8.params=deskripsi
 comment8.target=void\ setDeskripsi(java.lang.String)
+comment8.text=\r\n\ \r\n\ method\ setDeskripsi\ digunakan\ untuk\ menset\ deskripsi\ lokasi\r\n
 comment9.params=
 comment9.target=void\ printData()
 comment9.text=\r\n\ \r\n\ method\ print\ data\ digunakan\ untuk\ mencetak\ lokasi\r\n

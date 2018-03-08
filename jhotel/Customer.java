@@ -31,11 +31,19 @@ public class Customer
         return nama;
     }
     
+    /**
+     * 
+     * method setID digunakan untuk memasukkan nomor ID
+     */
     public void setID(int id){
     
         this.id = id;
     }
     
+    /**
+     * 
+     * method setNama digunakan untuk memasukkan nama
+     */
     public void setNama(String nama){
     
         this.nama = nama;

@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.target=Administrasi
+comment0.text=\r\n\ kelas\ ini\ akan\ mengatur\ logika\ pemesanan\ dan\ pembatalan\ pesanan.\r\n\r\n\ @author\ (Jan\ Harianda\ Barus)\r\n\ @version\ (March\ 8,\ 2018)\r\n
+comment1.params=pesan\ kamar
+comment1.target=void\ pesananDitugaskan(Pesanan,\ Room)
+comment2.params=pesan\ kamar
+comment2.target=void\ roomAmbilPesanan(Pesanan,\ Room)
+numComments=3

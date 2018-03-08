@@ -44,6 +44,10 @@ public class Lokasi
         this.y_coord = y_coord;
     }
     
+    /**
+     * 
+     * method setDeskripsi digunakan untuk menset deskripsi lokasi
+     */
     public void setDeskripsi(String deskripsi){
         this.deskripsiLokasi = deskripsiLokasi;
     }
