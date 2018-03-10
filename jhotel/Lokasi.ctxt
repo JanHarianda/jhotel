@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=Lokasi
-comment0.text=\ \r\n\ kelas\ ini\ memodelkan\ Lokasi\ dalam\ memesan\ kamar\ hotel\r\n\ \r\n\ @author\ (Jan\ Harianda\ Barus)\r\n\ @version\ (March\ 1,\ 2018)\r\n
+comment0.text=\ \r\n\ kelas\ ini\ memodelkan\ Lokasi\ dalam\ memesan\ kamar\ hotel\r\n\ \r\n\ @author\ (Jan\ Harianda\ Barus)\r\n\ @version\ (March\ 10,\ 2018)\r\n
 comment1.params=
 comment1.target=Lokasi()
 comment2.params=x_coord\ y_coord\ deskripsiLokasi
@@ -17,8 +17,8 @@ comment7.params=y_coord
 comment7.target=void\ setY(float)
 comment8.params=deskripsi
 comment8.target=void\ setDeskripsi(java.lang.String)
-comment8.text=\r\n\ \r\n\ method\ setDeskripsi\ digunakan\ untuk\ menset\ deskripsi\ lokasi\r\n
+comment8.text=\r\n\ method\ setDeskripsi\ digunakan\ untuk\ menset\ deskripsi\ lokasi\r\n
 comment9.params=
 comment9.target=void\ printData()
-comment9.text=\r\n\ \r\n\ method\ print\ data\ digunakan\ untuk\ mencetak\ lokasi\r\n
+comment9.text=\r\n\ method\ print\ data\ digunakan\ untuk\ mencetak\ lokasi\r\n
 numComments=10

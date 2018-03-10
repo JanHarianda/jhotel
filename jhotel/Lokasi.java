@@ -2,7 +2,7 @@
  * kelas ini memodelkan Lokasi dalam memesan kamar hotel
  * 
  * @author (Jan Harianda Barus)
- * @version (March 1, 2018)
+ * @version (March 10, 2018)
  */
 public class Lokasi
 {
@@ -45,7 +45,6 @@ public class Lokasi
     }
     
     /**
-     * 
      * method setDeskripsi digunakan untuk menset deskripsi lokasi
      */
     public void setDeskripsi(String deskripsi){
@@ -53,11 +52,12 @@ public class Lokasi
     }
     
     /**
-     * 
      * method print data digunakan untuk mencetak lokasi
      */
     public void printData()
     {
-        System.out.println("Total Deskripsi :" +deskripsiLokasi);
+        System.out.println("Koordinat x :" +x_coord);
+        System.out.println("Koordinat y :" +y_coord);
+        System.out.println("Deskripsi Lokasi:" +deskripsiLokasi);
     }
 }

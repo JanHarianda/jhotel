@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=StatusKamar
-comment0.text=\r\n\ Enumeration\ class\ StatusKamar\ -\ class\ ini\ untuk\ membatasi\ status\ kamar\ yang\ dapat\ diterima\r\n\r\n\ @author\ (Jan\ Harianda\ Barus)\r\n\ @version\ (March\ 8,\ 2018)\r\n
+comment0.text=\r\n\ Enumeration\ class\ StatusKamar\ -\ class\ ini\ untuk\ membatasi\ status\ kamar\ yang\ dapat\ diterima.\r\n\ \r\n\ @author\ (Jan\ Harianda\ Barus)\r\n\ @version\ (March\ 10,\ 2018)\r\n\ \r\n
 comment1.params=Status
 comment1.target=StatusKamar(java.lang.String)
 numComments=2

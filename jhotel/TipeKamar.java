@@ -6,11 +6,11 @@
  * @author (Jan Harianda Barus)
  * @version (March 8, 2018)
  */
-public enum TipeKamar
+enum TipeKamar
 {
     Single("Single"), Double("Double"), Premium("Premium");
     
-    private String Status;
+    public String Status;
     
     TipeKamar(String Status){
         this.Status = Status;
