@@ -6,9 +6,6 @@
  */
 public class DatabaseCustomer
 {
-    public DatabaseCustomer() {
-    }
-    
     private static String[] list_customer;
     
     public static boolean addCustomer(Customer baru)
@@ -23,6 +20,6 @@ public class DatabaseCustomer
     
     public static String[] getCustomerDatabase()
     {
-        return list_customer;
+        return null;
     }
 }

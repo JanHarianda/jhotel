@@ -10,11 +10,6 @@ public class Lokasi
     private float y_coord;
     private String deskripsiLokasi;
     
-    public Lokasi()
-    {
-        
-    }
-    
     public Lokasi(float x_coord, float y_coord, String deskripsiLokasi){
         this.x_coord = x_coord;
         this.y_coord = y_coord;

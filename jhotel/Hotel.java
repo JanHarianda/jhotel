@@ -11,11 +11,6 @@ public class Hotel
     private Lokasi lokasi;
     private int bintang;
     
-    public Hotel() 
-    {
-        
-    }
-    
     public Hotel(String nama, Lokasi lokasi, int bintang) 
     {
         this.nama = nama;

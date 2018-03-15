@@ -1,12 +1,10 @@
 #BlueJ class context
 comment0.target=DatabaseCustomer
 comment0.text=\r\n\ Kelas\ ini\ menjelaskan\ tentang\ database\ customer,\ dimana\ ada\ add,\ remove,\ dan\ melihat\ databse\ customer\r\n\ \r\n\ @author\ (Jan\ Harianda\ Barus)\r\n\ @version\ (March\ 10,\ 2018)\r\n
-comment1.params=
-comment1.target=DatabaseCustomer()
-comment2.params=baru
-comment2.target=boolean\ addCustomer(Customer)
-comment3.params=id
-comment3.target=boolean\ removeCustomer(int)
-comment4.params=
-comment4.target=java.lang.String[]\ getCustomerDatabase()
-numComments=5
+comment1.params=baru
+comment1.target=boolean\ addCustomer(Customer)
+comment2.params=id
+comment2.target=boolean\ removeCustomer(int)
+comment3.params=
+comment3.target=java.lang.String[]\ getCustomerDatabase()
+numComments=4

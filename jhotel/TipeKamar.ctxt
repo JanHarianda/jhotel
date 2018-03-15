@@ -3,4 +3,6 @@ comment0.target=TipeKamar
 comment0.text=\r\n\ Enumeration\ class\ TipeKamar\ -\ class\ ini\ untuk\ membatasi\ tipe\ kamar\ yang\ dapat\ diterima\r\n\ \r\n\r\n\ @author\ (Jan\ Harianda\ Barus)\r\n\ @version\ (March\ 8,\ 2018)\r\n
 comment1.params=Status
 comment1.target=TipeKamar(java.lang.String)
-numComments=2
+comment2.params=
+comment2.target=java.lang.String\ toString()
+numComments=3

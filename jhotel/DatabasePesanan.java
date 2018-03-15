@@ -6,6 +6,9 @@
  */
 public class DatabasePesanan
 {
+   public DatabasePesanan() {
+       
+    }
    private static String[] list_pesanan;
    
    public static boolean addPesanan(Pesanan baru)
@@ -13,19 +16,19 @@ public class DatabasePesanan
        return false;
     }
     
-   public static boolean removePesanan(Pesanan pesan)
+   public static boolean removePesanan(Pesanan pesan) 
     {
         return false;
     }
     
-   public static Pesanan getPesanan(Customer cust){
-       
+   public static Pesanan getPesanan(Customer cust) 
+   {       
        return null;
    }
     
-   public static String[] getPesananDatabase(){
-       
-       return list_pesanan;
+   public static String[] getPesananDatabase() 
+   {   
+       return null;
    }
     
    public static void pesananDibatalkan(Pesanan pesan)

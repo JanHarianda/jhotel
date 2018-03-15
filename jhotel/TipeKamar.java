@@ -15,5 +15,9 @@ enum TipeKamar
     TipeKamar(String Status){
         this.Status = Status;
     }
+    
+    public String toString() {
+        return Status;
+    }
 }
 

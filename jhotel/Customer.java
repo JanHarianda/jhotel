@@ -10,11 +10,6 @@ public class Customer
     protected int id;
     protected String nama;
     
-    public Customer() 
-    {
-        
-    }
-    
     /**
      * method setID digunakan untuk memasukkan nomor ID
      */
