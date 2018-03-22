@@ -1,3 +1,8 @@
+import java.text.*;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.Calendar;
+
 /**
  * kelas ini menjelaskan tentang sistem utama/main pada JHotel
  * 
@@ -8,6 +13,9 @@ public class JHotel
 {
     public static void main(String args[]) 
     {
+        Customer cust1 = new Customer(1, "Jan", new GregorianCalendar(1997,1,12).getTime());
+        //cust1.getDOB();
+        System.out.println(cust1.getDOB());
         //Lokasi Margonda = new Lokasi(5,4,"Depok");
         //Hotel satu = new Hotel("Margo", Margonda, 4);
         //Room room1 = new SingleRoom(satu, "12", true, StatusKamar.Vacant);

@@ -1,6 +1,8 @@
 import java.util.Date;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
+import java.text.*;
+import java.util.regex.*;
 
 /**
  * kelas ini menjelaskan tentang identitas bakal calon pengguna kamar hotel
@@ -15,23 +17,23 @@ public class Customer
     protected String nama;
     protected String email;
     protected Date dob;
-    private Pattern pattern;
-    private Matcher matcher;
     
     /**
      * method setID digunakan untuk memasukkan nomor ID
      */
     
-    public Customer(int id, String nama, int tanggal, int bulan, int tahun)  
+    public Customer(int idIn, String namaIn, int tanggal, int bulan, int tahun)  
     {
         this.id = id;
         this.nama = nama;
-        this.dob = new Date(tahun, bulan, tanggal);
-        
+        dob = new Date(tahun, bulan, tanggal);
     }
     
-    public Customer() {
-        
+    public Customer(int id1, String nama1, Date dob1) 
+    {
+        id = id1;
+        nama = nama1;
+        dob = dob1;
     }
     
     /**
@@ -52,8 +54,11 @@ public class Customer
         return nama;
     }
     
-    public Date getDOB() 
+    public Date getDOB()
     {
+        DateFormat formatter = new SimpleDateFormat("'DOB : 'dd MMMM yyyy");
+        String output = formatter.format(dob);
+        System.out.print(output);
         return dob;
     }
     
@@ -84,7 +89,7 @@ public class Customer
     public void setEmail(String email){
         String pattern = 
             "^[_&*_~A-Za-z0-9-\\+]+(\\.[_&*_~A-Za-z0-9-]+)*@[A-Za-z0-9][A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
-        
+     
         Pattern r = Pattern.compile(pattern);
         Matcher m = r.matcher(email);
         

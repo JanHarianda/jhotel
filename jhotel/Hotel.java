@@ -60,7 +60,9 @@ public class Hotel
     
     public String toString() 
     {
-        return null;
+        return  "\nNama hotel  : "+ nama+
+                "\nKoordinat Y  : "+ lokasi.getDeskripsi()+
+                "\nDeskripsi lokasi: "+ bintang;
     }
     
     ///**
