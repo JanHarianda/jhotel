@@ -9,10 +9,8 @@
 public abstract class Room
 {
     private Hotel hotel;
-    //private int id;
     private String nomor_kamar;
     private boolean isAvailable;
-    //private Customer customer;
     private StatusKamar status_kamar;
     private Pesanan pesan;
     protected double dailyTariff;
@@ -31,11 +29,6 @@ public abstract class Room
         return hotel;
     }
     
-    //public int getID() 
-    //{
-       // return id;
-    //}
-    
     public String getNomorKamar() 
     {
         return nomor_kamar;
@@ -45,11 +38,6 @@ public abstract class Room
     {
         return isAvailable;
     }
-    
-    //public Customer getCustomer() 
-    //{
-       // return customer;
-    //}
     
     public double getDailyTariff() 
     {
@@ -72,12 +60,7 @@ public abstract class Room
     {
         this.hotel = hotel;
     }
-    
-    //public void setID (int id) 
-    //{
-     //   this.id = id;
-    //}
-    
+ 
     public void setNomorKamar(String nomor_kamar) 
     {
         this.nomor_kamar = nomor_kamar;
@@ -87,11 +70,6 @@ public abstract class Room
     {
         this.isAvailable = isAvailable;
     }
-    
-    //public void setCustomer(Customer customer) 
-    //{
-     //   this.customer = customer;
-    //}
     
     public void setDailyTariff(double dailytariff) 
     {
@@ -108,15 +86,19 @@ public abstract class Room
         this.pesan = pesan;
     }
     
-    public void printData()
+    public String toString() 
     {
-        System.out.println("Nama Hotel :" +hotel);
-        System.out.println("Nomor Kamar :" +nomor_kamar);
-        System.out.println("Status Ketersediaan :" +isAvailable);
-        System.out.println("Harga :" +dailyTariff);
-        System.out.println("Status Kamar :" +status_kamar);
-        System.out.println("Tipe Kamar :" +getTipeKamar());
+        return null;
     }
+    //public void printData()
+    //{
+      //  System.out.println("Nama Hotel :" +hotel);
+      //  System.out.println("Nomor Kamar :" +nomor_kamar);
+      //  System.out.println("Status Ketersediaan :" +isAvailable);
+      //  System.out.println("Harga :" +dailyTariff);
+      //  System.out.println("Status Kamar :" +status_kamar);
+      //  System.out.println("Tipe Kamar :" +getTipeKamar());
+    //}
 }
 
 

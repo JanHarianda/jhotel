@@ -46,13 +46,18 @@ public class Lokasi
         this.deskripsiLokasi = deskripsiLokasi;
     }
     
-    /**
-     * method print data digunakan untuk mencetak lokasi
-     */
-    public void printData()
+    public String toString() 
     {
-        System.out.println("Koordinat x :" +x_coord);
-        System.out.println("Koordinat y :" +y_coord);
-        System.out.println("Deskripsi Lokasi:" +deskripsiLokasi);
+        return null;
     }
+    
+    ///**
+    // * method print data digunakan untuk mencetak lokasi
+     //*/
+    //public void printData()
+    //{
+      //  System.out.println("Koordinat x :" +x_coord);
+       // System.out.println("Koordinat y :" +y_coord);
+      //  System.out.println("Deskripsi Lokasi:" +deskripsiLokasi);
+    //}
 }

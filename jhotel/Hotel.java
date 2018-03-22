@@ -58,13 +58,18 @@ public class Hotel
         this.bintang = bintang;
     }
     
-    /**
-     * method print data digunakan untuk mencetak nama
-     */
-    public void printData() 
+    public String toString() 
     {
-        System.out.println("Nama Hotel :" +nama);
-        System.out.println("Lokasi Hotel :" +lokasi);
-        System.out.println("Bintang Hotel :" +bintang);
+        return null;
     }
+    
+    ///**
+     //* method print data digunakan untuk mencetak nama
+     //*/
+    //public void printData() 
+    //{
+        //System.out.println("Nama Hotel :" +nama);
+        //System.out.println("Lokasi Hotel :" +lokasi);
+        //System.out.println("Bintang Hotel :" +bintang);
+    //}
 }

@@ -1,3 +1,4 @@
+import java.util.Date;
 /** 
  * kelas ini memodelkan sistem pesanan dalam memesan kamar hotel
  * 
@@ -13,12 +14,14 @@ public class Pesanan
     private boolean isDiproses;
     private boolean isSelesai;
     private Room kamar;
+    private Date tanggalPesan;
    
     public Pesanan(double jumlahHari, Customer pelanggan, Room kamar)
     {
         this.jumlahHari = jumlahHari;
         this.pelanggan = pelanggan;
         this.kamar = kamar;
+        this.biaya = (kamar.getDailyTariff()*jumlahHari);
     }
     
     public double getBiaya()
@@ -44,6 +47,11 @@ public class Pesanan
     public Room getRoom() 
     {
         return kamar;
+    }
+    
+    public Date getTanggalPesan() 
+    {
+        return tanggalPesan;
     }
     
     public void setBiaya(double biaya) 
@@ -76,6 +84,16 @@ public class Pesanan
         this.kamar = kamar;
     }
     
+    public void setTanggalPesan(Date tanggalPesan) 
+    {
+        this.tanggalPesan = tanggalPesan;
+    }
+    
+    public String toString() 
+    {
+        return null;
+    }
+    
     /**
      * ini adalah method untuk print
      */
@@ -83,7 +101,7 @@ public class Pesanan
     {
         System.out.println("Total Biaya :" +biaya);
         System.out.println("Jumlah Hari:" +jumlahHari);
-        System.out.println("Nama Pelanggan:" +pelanggan);
+        System.out.println("Nama Pelanggan:" +pelanggan.getNama());
         System.out.println("Kondisi Status Diproses:" +isDiproses);
         System.out.println("Kondisi Status Selesai:" +isSelesai);
         System.out.println("Room:" +kamar);

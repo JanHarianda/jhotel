@@ -10,9 +10,9 @@ enum StatusKamar
 {
     Booked("Booked"), Processed("Processed"), Vacant("Vacant");
     
-    public String Status;
+    private String deskripsi;
     
-    StatusKamar(String Status){
-        this.Status = Status;
+    StatusKamar(String deskripsi){
+        this.deskripsi = deskripsi;
     }
 }

@@ -19,6 +19,5 @@ comment7.params=bintang
 comment7.target=void\ setBintang(int)
 comment7.text=\r\n\ method\ setBintang\ digunakan\ untuk\ men-set\ ingin\ bintang\ berapa\r\n
 comment8.params=
-comment8.target=void\ printData()
-comment8.text=\r\n\ method\ print\ data\ digunakan\ untuk\ mencetak\ nama\r\n
+comment8.target=java.lang.String\ toString()
 numComments=9
