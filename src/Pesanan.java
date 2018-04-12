@@ -8,33 +8,32 @@ import java.util.Date;
 
 public class Pesanan
 {
+    private int id;
     private double biaya;
     private double jumlahHari;
     private Customer pelanggan;
+    private boolean isAktif;
     private boolean isDiproses;
     private boolean isSelesai;
     private Room kamar;
     private Date tanggalPesan;
    
-    public Pesanan(double jumlahHari, Customer pelanggan, Room kamar, int tanggal, int bulan, int tahun)
+    public Pesanan(double jumlahHari, Customer pelanggan)
     {
         this.jumlahHari = jumlahHari;
         this.pelanggan = pelanggan;
         this.kamar = kamar;
         this.biaya = (kamar.getDailyTariff()*jumlahHari);
-        tanggalPesan = new Date(tahun, bulan, tanggal);
+        //tanggalPesan = new Date(year, month, date);
     }
     
-    public Pesanan(double jumlahHari, Customer pelanggan, Room kamar, Date tanggalPesan)
+    public int getID()
     {
-        jumlahHari = jumlahHari;
-        pelanggan = pelanggan;
-        kamar = kamar;
-        biaya = kamar.getDailyTariff() * jumlahHari;
-        tanggalPesan = tanggalPesan;
+        return id;
     }
     
     public double getBiaya()
+
     {
         return biaya;
     }
@@ -48,12 +47,22 @@ public class Pesanan
     {
         return pelanggan;
     }
-    
+
+    public boolean getStatusAktif()
+    {
+        return isAktif;
+    }
+
     public boolean getStatusDiproses()
     {
         return isDiproses;
     }
-    
+
+    public boolean getStatusSelesai()
+    {
+        return isSelesai;
+    }
+
     public Room getRoom() 
     {
         return kamar;
@@ -63,7 +72,12 @@ public class Pesanan
     {
         return tanggalPesan;
     }
-    
+
+    public void setID(int id)
+    {
+        this.id = id;
+    }
+
     public void setBiaya(double biaya) 
     {        
         this.biaya = kamar.dailyTariff*jumlahHari;
@@ -78,7 +92,12 @@ public class Pesanan
     {
         this.pelanggan = pelanggan;
     }
-    
+
+    public void setStatusAktif(boolean aktif)
+    {
+        this.isAktif = isAktif;
+    }
+
     public void setStatusDiproses(boolean diproses) 
     {
         this.isDiproses = isDiproses;

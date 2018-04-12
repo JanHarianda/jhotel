@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.target=JHotel
+comment0.text=\r\n\ kelas\ ini\ menjelaskan\ tentang\ sistem\ utama/main\ pada\ JHotel\r\n\ \r\n\ @author\ (Jan\ Harianda\ Barus)\r\n\ @version\ (March\ 1,\ 2018)\r\n
+comment1.params=args
+comment1.target=void\ main(java.lang.String[])
+comment2.params=
+comment2.target=JHotel()
+numComments=3

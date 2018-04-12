@@ -1,0 +1,23 @@
+#BlueJ class context
+comment0.target=Hotel
+comment0.text=\r\n\ kelas\ ini\ memodelkan\ Hotel\r\n\r\n\ @author\ (Jan\ Harianda\ Barus)\r\n\ @version\ (March\ 10,\ 2018)\r\n
+comment1.params=nama\ lokasi\ bintang
+comment1.target=Hotel(java.lang.String,\ Lokasi,\ int)
+comment2.params=
+comment2.target=int\ getBintang()
+comment3.params=
+comment3.target=java.lang.String\ getNama()
+comment4.params=
+comment4.target=Lokasi\ getLokasi()
+comment5.params=nama
+comment5.target=void\ setNama(java.lang.String)
+comment5.text=\r\n\ method\ setNama\ digunakan\ untuk\ men-set\ nama\r\n
+comment6.params=lokasi
+comment6.target=void\ setLokasi(Lokasi)
+comment6.text=\r\n\ method\ setLokasi\ digunakan\ untuk\ menentukan\ Lokasi\ dimana\ yang\ ingin\ dicari\r\n
+comment7.params=bintang
+comment7.target=void\ setBintang(int)
+comment7.text=\r\n\ method\ setBintang\ digunakan\ untuk\ men-set\ ingin\ bintang\ berapa\r\n
+comment8.params=
+comment8.target=java.lang.String\ toString()
+numComments=9

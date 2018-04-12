@@ -10,17 +10,15 @@ public abstract class Room
 {
     private Hotel hotel;
     private String nomor_kamar;
-    private boolean isAvailable;
     private StatusKamar status_kamar;
     private Pesanan pesan;
     protected double dailyTariff;
     
     
-    public Room(Hotel hotel, String nomor_kamar, boolean isAvailable, StatusKamar status_kamar) 
+    public Room(Hotel hotel, String nomor_kamar, StatusKamar status_kamar)
     {
         this.hotel = hotel;
         this.nomor_kamar = nomor_kamar;
-        this.isAvailable = isAvailable;
         this.status_kamar = status_kamar;
     }
     
@@ -32,11 +30,6 @@ public abstract class Room
     public String getNomorKamar() 
     {
         return nomor_kamar;
-    }
-    
-    public boolean getStatusAvailable() 
-    {
-        return isAvailable;
     }
     
     public double getDailyTariff() 
@@ -65,11 +58,7 @@ public abstract class Room
     {
         this.nomor_kamar = nomor_kamar;
     }
-    
-    public void setStatusAvailable(boolean isAvailable) 
-    {
-        this.isAvailable = isAvailable;
-    }
+
     
     public void setDailyTariff(double dailytariff) 
     {
