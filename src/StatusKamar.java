@@ -3,16 +3,32 @@
  * Enumeration class StatusKamar - class ini untuk membatasi status kamar yang dapat diterima.
  * 
  * @author (Jan Harianda Barus)
- * @version (March 10, 2018)
+ * @version (April 18, 2018)
  * 
  */
-enum StatusKamar 
+public enum StatusKamar
 {
-    Booked("Booked"), Processed("Processed"), Vacant("Vacant");
-    
-    private String deskripsi;
-    
-    StatusKamar(String deskripsi){
-        this.deskripsi = deskripsi;
+    BOOKED("Booked"), PROCESSED("Processed"), VACANT("Vacant");
+
+    private final String status;
+
+    /**
+     * Method StatusKamar merupakan constructor dari class enum StatusKamar
+     *
+     * @param status sebagai status kamar
+     */
+    private StatusKamar(String status)
+    {
+        this.status = status;
+    }
+
+    /**
+     * Method toString digunakan untuk mengembalikan status kamar
+     *
+     * @return instance variable status
+     */
+    public String toString()
+    {
+        return ("Status kamar : " + this.status);
     }
 }

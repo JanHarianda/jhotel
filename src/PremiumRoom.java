@@ -3,35 +3,53 @@
  * Ini adalah kelas PremiumRoom
  *
  * @author (Jan Harianda Barus)
- * @version (March 15, 2018)
+ * @version (April 18, 2018)
  */
 public class PremiumRoom extends Room
 {
-    private static double DISCOUNT;
-    private static TipeKamar TIPE_KAMAR = TipeKamar.Premium;
-    
-    /**
-     * Constructor for objects of class PremiumRoom
-     */
+    // instance variables
+    private static TipeKamar TIPE_KAMAR = TipeKamar.PREMIUM;
+    private static double DISCOUNT = 0.3;
 
-    public PremiumRoom(Hotel hotel, String nomor_kamar, 
-    boolean isAvailable, StatusKamar status_kamar) 
+    /**
+     * Konstruktor dari class PremiumRoom
+     *
+     * @param hotel sebagai hotel yang memiliki kamar
+     * @param nomor_kamar  nomor kamar
+     * @param status_kamar  status kamar
+     */
+    public PremiumRoom(Hotel hotel, String nomor_kamar, StatusKamar status_kamar)
     {
-        super(hotel, nomor_kamar, isAvailable, status_kamar);
+        super(hotel, nomor_kamar, status_kamar);
     }
-    
-    public TipeKamar getTipeKamar() 
+
+    /**
+     * Method ini digunakan untuk mengeset tarif harian.
+     *
+     * @param   dailytariff tarif sewa harian kamar
+     */
+    public void setDailyTariff(double dailytariff)
+    {
+        dailytariff *= DISCOUNT;
+    }
+
+    /**
+     * Method ini digunakan untuk mengambil diskon harga.
+     *
+     * @return  DISCOUNT
+     */
+    public double getDiscount()
+    {
+        return DISCOUNT;
+    }
+
+    /**
+     * Method ini digunakan untuk mengambil nilai tipe kamar.
+     *
+     * @return    TIPE_KAMAR
+     */
+    public TipeKamar getTipeKamar()
     {
         return TIPE_KAMAR;
-    }
-    
-    public double getDiscount() 
-    {
-        return DISCOUNT=0.3;
-    }
-    
-    public void setDailyTariff(double dailytariff) 
-    {
-        dailytariff = dailytariff*DISCOUNT;
     }
 }

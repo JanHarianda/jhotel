@@ -9,111 +9,152 @@ import java.util.regex.*;
  * yang berupa id number, nama, dan lainnya.
  * 
  * @author (Jan Harianda Barus)
- * @version (March 10, 2018)
+ * @version (April 18, 2018)
  */
+import java.util.Date;
+import java.util.regex.*;
+import java.util.*;
+import java.text.*;
+
 public class Customer
 {
+    // Instance variable yang digunakan pada class Customer
     protected int id;
     protected String nama;
     protected String email;
     protected Date dob;
-    
+    SimpleDateFormat dmy = new SimpleDateFormat ("dd MMMMMMMMM yyyy");
+
     /**
-     * method setID digunakan untuk memasukkan nomor ID
+     * Konstruktor dari class Customer.
+     *
+     * @param nama sebagai nama pelanggan
+     * @param tanggal sebagai tanggal lahir pelanggan
+     * @param bulan sebagai bulan lahir pelanggan
+     * @param tahun sebagai tahun lahir pelanggan
      */
-    
-    public Customer(int idIn, String namaIn, int tanggal, int bulan, int tahun)  
+    public Customer(String nama, int tanggal, int bulan, int tahun)
     {
-        this.id = id;
+        this.id = DatabaseCustomer.getLastCustomerID() + 1;
         this.nama = nama;
-        dob = new Date(tahun, bulan, tanggal);
+        this.dob = new GregorianCalendar(tahun, bulan-1, tanggal).getTime();
     }
-    
-    public Customer(int id1, String nama1, Date dob1) 
-    {
-        id = id1;
-        nama = nama1;
-        dob = dob1;
-    }
-    
+
     /**
-     * method getID digunakan untuk mendapatkan nomor ID
+     * Constructor dari class Customer.
+     *
+     * @param nama  nama pelanggan
+     * @param dob  waktu kelahiran pelanggan
      */
-    
-    public int getID() 
+    public Customer(String nama, Date dob)
     {
-        return id;
+        this.id = DatabaseCustomer.getLastCustomerID() + 1;
+        this.nama = nama;
+        this.dob = dob;
+        this.dob.setMonth(dob.getMonth()-1);
     }
-    
+
     /**
-     * method setID digunakan untuk mendapatkan nama
+     * Method ini digunakan untuk mengubah ID customer.
+     *
+     * @param id  ID pelanggan
      */
-    
-    public String getNama() 
+    public void setID(int id)
     {
-        return nama;
-    }
-    
-    public Date getDOB()
-    {
-        DateFormat formatter = new SimpleDateFormat("'DOB : 'dd MMMM yyyy");
-        String output = formatter.format(dob);
-        System.out.print(output);
-        return dob;
-    }
-    
-    /**
-     * method setID digunakan untuk memasukkan nomor ID
-     */
-    public void setID(int id){
-    
         this.id = id;
     }
-    
+
     /**
-     * method setNama digunakan untuk memasukkan nama
+     * Method ini digunakan untuk mengubah nama customer.
+     *
+     * @param nama  nama pelanggan
      */
-    public void setNama(String nama) 
+    public void setNama(String nama)
     {
         this.nama = nama;
     }
-    
-    /**
-     * Mutator untuk objek dari class Customer
-     * untuk memberi email
-     * 
-     * @return email.
-     */
-    
-    
-    public void setEmail(String email){
-        String pattern = 
-            "^[_&*_~A-Za-z0-9-\\+]+(\\.[_&*_~A-Za-z0-9-]+)*@[A-Za-z0-9][A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
-     
-        Pattern r = Pattern.compile(pattern);
-        Matcher m = r.matcher(email);
-        
-        if (m.matches()){
+
+    public void setEmail(String email)
+    {
+        if (email.matches("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+                + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$")){
+            System.out.println("Email valid");
             this.email = email;
         }
+        else {
+            System.out.println("Email tidak valid");
+        }
     }
-    
-    public void setDOB(Date dob) 
+
+    /**
+     * Method untuk menset waktu kelahiran pelanggan.
+     *
+     * @param dob  waktu kelahiran pelanggan
+     */
+    public void setDOB(Date dob)
     {
         this.dob = dob;
     }
-    
-    public String toString() 
+
+    /**
+     * Method ini digunakan untuk mengambil ID customer.
+     *
+     * @return id
+     */
+    public int getID()
     {
-        return null;
+        return id;
     }
-    
-    ///**
-     //* method print data digunakan untuk mencetak nama
-    // */
-    //public void printData() 
-    //{
-       // System.out.println("Tampilan ID:" +id);
-       // System.out.println("Total nama :" +nama);
-    //}
+
+    /**
+     * Method ini digunakan untuk mengambil nama customer.
+     *
+     * @return nama
+     */
+    public String getNama()
+    {
+        return nama;
+    }
+
+    /**
+     * Method ini digunakan untuk mengambil email pelanggan.
+     * @return email
+     */
+    public String getEmail()
+    {
+        return email;
+    }
+
+    /**
+     * Method ini digunakan untuk mengambil waktu kelahiran pelanggan.
+     *
+     * @return dob
+     */
+    public Date getDOB()
+    {
+        return dob;
+    }
+
+    /**
+     * Method ini digunakan untuk mencetak nama dan ID
+     * pelanggan.
+     *
+     * @return informasi pelanggan
+     */
+    public String toString()
+    {
+        if(DatabasePesanan.getPesananAktif(this) != null){
+            return ("Customer ID    : " + getID() +
+                    "\nName           : " + getNama() +
+                    "\nE-mail         : " + getEmail() +
+                    "\nDate of Birth  : " + dmy.format(getDOB()) +
+                    "\nBooking order is in process.");
+        }
+        else {
+            return ("Customer ID    : " + getID() +
+                    "\nName           : " + getNama() +
+                    "\nE-mail         : " + getEmail() +
+                    "\nDate of Birth  : " + dmy.format(getDOB()));
+        }
+    }
 }

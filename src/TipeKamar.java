@@ -4,19 +4,32 @@
  * 
  *
  * @author (Jan Harianda Barus)
- * @version (March 8, 2018)
+ * @version (April 18, 2018)
  */
-enum TipeKamar
+public enum TipeKamar
 {
-    Single("Single"), Double("Double"), Premium("Premium");
-    private String deskripsi;
-    
-    TipeKamar(String deskripsi){
-        this.deskripsi = deskripsi;
+    SINGLE("Single"), DOUBLE("Double"), PREMIUM("Premium");
+
+    private final String tipe;
+
+    /**
+     * Method ini merupakan constructor dari class enum
+     * TipeKamar.
+     *
+     * @param tipe sebagai tipe kamar
+     */
+    private TipeKamar(String tipe)
+    {
+        this.tipe = tipe;
     }
-    
-    public String toString() {
-        return deskripsi;
+
+    /**
+     * Method ini digunakan untuk mengembalikan tipe kamar dalam bentuk String
+     *
+     * @return tipe kamar
+     */
+    public String toString()
+    {
+        return ("Tipe kamar : " + this.tipe);
     }
 }
-
