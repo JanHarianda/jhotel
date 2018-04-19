@@ -25,16 +25,20 @@ public class DatabaseRoom extends DatabasePesanan
      * @param  baru dengan tipe data Customer
      * @return false
      */
-    public static boolean addRoom(Room baru)
+    public static boolean addRoom(Room baru) throws RoomSudahAdaException
     {
-        for(Room cari : ROOM_DATABASE){
-            if(cari.getHotel() != baru.getHotel() &&
-                    cari.getNomorKamar() != baru.getNomorKamar()) {
-                ROOM_DATABASE.add(baru);
-                return true;
+        for(Room kamar : ROOM_DATABASE)
+        {
+            if(kamar.getHotel().equals(baru.getHotel()) &&
+                    kamar.getNomorKamar().equals(baru.getNomorKamar()))
+            {
+                throw new RoomSudahAdaException(kamar);
+                //return false;
             }
         }
-        return false;
+
+        ROOM_DATABASE.add(baru);
+        return true;
     }
 
     /**
@@ -44,17 +48,23 @@ public class DatabaseRoom extends DatabasePesanan
      * @param nomor_kamar nomor kamar
      * @return boolean false
      */
-    public static boolean removeRoom(Hotel hotel, String nomor_kamar)
+    public static boolean removeRoom(Hotel hotel, String nomor_kamar) throws RoomTidakDitemukanException
     {
-        for(Room cari : ROOM_DATABASE){
-            if(cari.getHotel() == hotel &&
-                    cari.getNomorKamar() == nomor_kamar) {
-                ROOM_DATABASE.remove(cari);
-                return true;
+        for(Room kamar : ROOM_DATABASE)
+        {
+            if(kamar.getHotel().equals(hotel) &&
+                    kamar.getNomorKamar().equals(nomor_kamar))
+            {
+                Administrasi.pesananDibatalkan(kamar);
+                if(ROOM_DATABASE.remove(kamar))
+                {
+                    return true;
+                }
             }
         }
 
-        return false;
+        throw new RoomTidakDitemukanException(hotel, nomor_kamar);
+        //return false;
     }
 
     /**

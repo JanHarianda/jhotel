@@ -25,10 +25,10 @@ public class DatabaseCustomer
      * @param baru sebagai penanda pelanggan baru
      * @return true/false
      */
-    public static boolean addCustomer(Customer baru)
+    public static boolean addCustomer(Customer baru) throws PelangganSudahAdaException
     {
         for(Customer cari : CUSTOMER_DATABASE){
-            if(baru.getID() == cari.getID()){
+            if(baru.getID() == cari.getID() || cari.getEmail().equals(baru.getEmail())){
                 return false;
             }
         }
@@ -44,23 +44,34 @@ public class DatabaseCustomer
      * @param id sebagai penanda ID pelanggan baru
      * @return true/false
      */
-    public static boolean removeCustomer(int id)
+    public static boolean removeCustomer(int id) throws PelangganTidakDitemukanException
     {
-        for(Customer cari : CUSTOMER_DATABASE){
-            if(cari.getID() == id){
-                for(Pesanan cari2 : DatabasePesanan.getPesananDatabase()){
-                    if(cari2.getPelanggan() == cari){
-                        DatabasePesanan.removePesanan(cari2);
-                    }
+        for(Customer pelanggan : CUSTOMER_DATABASE)
+        {
+            if(pelanggan.getID() == id)
+            {
+                try
+                {
+                    DatabasePesanan.removePesanan(
+                            DatabasePesanan.getPesananAktif(pelanggan));
+                }
+                catch(PesananTidakDitemukanException a)
+                {
+                    throw new PelangganTidakDitemukanException(id);
                 }
 
-                CUSTOMER_DATABASE.remove(cari);
-                return true;
+                if(CUSTOMER_DATABASE.remove(pelanggan))
+                {
+                    return true;
+                }
             }
         }
 
-        return false;
+        throw new PelangganTidakDitemukanException(id);
+        //return false;
     }
+
+
 
     /**
      * Method ini digunakan untuk mengambil pelanggan

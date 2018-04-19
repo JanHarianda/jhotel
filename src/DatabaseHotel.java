@@ -28,13 +28,14 @@ public class DatabaseHotel
      */
     public static Hotel getHotel(int id)
     {
-        for(Hotel cari : HOTEL_DATABASE){
-            if(cari.getID() == id){
-                return cari;
+        for(Hotel hotel : HOTEL_DATABASE)
+        {
+            if(hotel.getID() == id)
+            {
+                return hotel;
             }
         }
-
-        return  null;
+        return null;
     }
 
     /**
@@ -43,16 +44,21 @@ public class DatabaseHotel
      * @param  baru sebagai hotel yang akan ditambahkan
      * @return true atau false
      */
-    public static boolean addHotel(Hotel baru)
+    public static boolean addHotel(Hotel baru) throws HotelSudahAdaException
     {
-        for(Hotel cari : HOTEL_DATABASE){
-            if(baru.getID() == cari.getID()){
-                return false;
+        for(Hotel hotel : HOTEL_DATABASE)
+        {
+            if(hotel.getID() == baru.getID() ||
+                    (hotel.getNama().equals(baru.getNama()) &&
+                            hotel.getLokasi().equals(baru.getLokasi())))
+            {
+                throw new HotelSudahAdaException(hotel);
+                //return false;
             }
         }
 
         HOTEL_DATABASE.add(baru);
-        DatabaseHotel.LAST_HOTEL_ID++;
+        LAST_HOTEL_ID = baru.getID();
         return true;
     }
 
@@ -62,19 +68,35 @@ public class DatabaseHotel
      * @param id  ID hotel yang akan dihapus
      * @return true atau false
      */
-    public static boolean removeHotel(int id)
+    public static boolean removeHotel(int id) throws HotelTidakDitemukanException
     {
-        for(Hotel cari : HOTEL_DATABASE){
-            if(cari.getID() == id){
-                for(Room cari2 : DatabaseRoom.getRoomsFromHotel(cari)){
-                    DatabaseRoom.removeRoom(cari, cari2.getNomorKamar());
+        for(Hotel hotel : HOTEL_DATABASE)
+        {
+            if(hotel.getID() == id)
+            {
+                ArrayList<Room> tempRoom = new ArrayList<Room>();
+                tempRoom = DatabaseRoom.getRoomsFromHotel(hotel);
+
+                for(Room kamar : tempRoom)
+                {
+                    try
+                    {
+                        DatabaseRoom.removeRoom(hotel, kamar.getNomorKamar());
+                    }
+                    catch(RoomTidakDitemukanException a)
+                    {
+                        return false;
+                    }
                 }
-                HOTEL_DATABASE.remove(cari);
-                return true;
+
+                if(HOTEL_DATABASE.remove(hotel))
+                {
+                    return true;
+                }
             }
         }
-
-        return false;
+        throw new HotelTidakDitemukanException(id);
+        //return false;
     }
 
     /**

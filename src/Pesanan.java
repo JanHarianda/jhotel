@@ -32,7 +32,7 @@ public class Pesanan
         this.jumlahHari = jumlahHari;
         this.pelanggan = pelanggan;
         this.isAktif = true;
-        this.biaya = jumlahHari * getRoom().getDailyTariff();
+        //this.biaya = jumlahHari * getRoom().getDailyTariff();
         this.tanggalPesan = new Date();
         this.id = DatabasePesanan.getLastPesananID() + 1;
     }
@@ -221,22 +221,28 @@ public class Pesanan
      *
      * @return tidak ada
      */
-    public String toString()
-    {
+    public String toString() {
+
         String final_status = "KOSONG";
-        if(this.isDiproses && !this.isSelesai){
+        if (this.isDiproses && !this.isSelesai) {
             final_status = "DIPROSES";
-        }
-        else if(!this.isDiproses && !this.isSelesai){
+        } else if (!this.isDiproses && !this.isSelesai) {
             final_status = "KOSONG";
-        }
-        else if(!this.isDiproses && this.isSelesai){
+        } else if (!this.isDiproses && this.isSelesai) {
             final_status = "SELESAI";
         }
-        return "Dibuat oleh " + getPelanggan().getNama()
-                + ". Proses booking untuk " + getRoom().getHotel().getNama()
-                + "kamar nomor " + getRoom().getNomorKamar()
-                + "dengan tipe kamar yang diinginkan " + getRoom().getTipeKamar().toString()
-                + ". Status: " + final_status + ".";
-    }
-}
+
+        if (kamar != null) {
+            return "Dibuat oleh " + getPelanggan().getNama()
+                    + ". Proses booking untuk " + getRoom().getHotel().getNama()
+                    + " kamar nomor " + getRoom().getNomorKamar()
+                    + " dengan tipe kamar yang diinginkan " + getRoom().getTipeKamar().toString()
+                    + ". Status: " + final_status + ".\n";
+        } else {
+            return "Dibuat oleh " + getPelanggan().getNama()
+                    + ". Proses booking null "
+                    + "kamar nomor null "
+                    + "dengan tipe kamar yang diinginkan null "
+                    + ". Status: " + final_status + ".";
+        }
+    }}

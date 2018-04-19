@@ -26,15 +26,28 @@ public class DatabasePesanan
      * @param baru sebagai pesanan yang akan ditambahkan
      * @return true/false
      */
-    public static boolean addPesanan(Pesanan baru)
+    public static boolean addPesanan(Pesanan baru) throws PesananSudahAdaException
     {
-        if(baru.getStatusAktif()) {
-            return false;
-        } else{
-            PESANAN_DATABASE.add(baru);
-            DatabasePesanan.LAST_PESANAN_ID ++;
-            return true;
+        for(Pesanan pesanan : PESANAN_DATABASE)
+        {
+            if(pesanan.getID() == baru.getID())
+            {
+                if(pesanan.getStatusAktif() == true)
+                {
+                    throw new PesananSudahAdaException(pesanan);
+                    //return false;
+                }
+                else
+                {
+                    LAST_PESANAN_ID = baru.getID();
+                    PESANAN_DATABASE.add(baru);
+                    return true;
+                }
+            }
         }
+        LAST_PESANAN_ID = baru.getID();
+        PESANAN_DATABASE.add(baru);
+        return true;
     }
 
     /**
@@ -43,25 +56,35 @@ public class DatabasePesanan
      * @param pesan sebagai pesanan yang akan dihapus
      * @return true/false
      */
-    public static boolean removePesanan(Pesanan pesan)
+    public static boolean removePesanan(Pesanan pesan) throws PesananTidakDitemukanException
     {
-        for(Pesanan cari : PESANAN_DATABASE){
-            if(cari.equals(pesan)){
-                if(cari.getRoom() != null){
-                    Administrasi.pesananDibatalkan(pesan);
-                } else{
-                    if(cari.getStatusAktif() == true){
-                        cari.setStatusAktif(false);
+        for(Pesanan pesanan : PESANAN_DATABASE)
+        {
+            if(pesanan.equals(pesan))
+            {
+                if(pesanan.getRoom() != null)
+                {
+                    Administrasi.pesananDibatalkan(pesanan);
+                }
+                else
+                {
+                    if(pesanan.getStatusAktif())
+                    {
+                        pesanan.setStatusAktif(false);
                     }
                 }
 
-                PESANAN_DATABASE.remove(pesan);
-                return true;
+                if(PESANAN_DATABASE.remove(pesanan))
+                {
+                    return true;
+                }
             }
         }
 
-        return false;
+        throw new PesananTidakDitemukanException(pesan.getPelanggan());
+        //return false;
     }
+
 
     /**
      * Method ini digunakan untuk mengambil pesanan
