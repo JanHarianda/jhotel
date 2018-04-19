@@ -16,11 +16,10 @@ public class PremiumRoom extends Room
      *
      * @param hotel sebagai hotel yang memiliki kamar
      * @param nomor_kamar  nomor kamar
-     * @param status_kamar  status kamar
      */
-    public PremiumRoom(Hotel hotel, String nomor_kamar, StatusKamar status_kamar)
+    public PremiumRoom(Hotel hotel, String nomor_kamar)
     {
-        super(hotel, nomor_kamar, status_kamar);
+        super(hotel, nomor_kamar);
     }
 
     /**

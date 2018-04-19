@@ -15,12 +15,11 @@ public class SingleRoom extends Room
      *
      * @param hotel sebagai hotel yang memiliki kamar
      * @param nomor_kamar  nomor kamar
-     * @param status_kamar  status kamar
      */
-    public SingleRoom(Hotel hotel, String nomor_kamar, StatusKamar status_kamar)
+    public SingleRoom(Hotel hotel, String nomor_kamar)
     {
         // initialise instance variables
-        super(hotel, nomor_kamar, status_kamar);
+        super(hotel, nomor_kamar);
     }
 
     /**

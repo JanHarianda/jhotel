@@ -19,14 +19,11 @@ public abstract class Room
      *
      * @param hotel sebagai hotel yang memiliki kamar
      * @param nomor_kamar  nomor kamar
-     * @param status_kamar  status kamar
      */
-    public Room(Hotel hotel, String nomor_kamar, StatusKamar status_kamar)
+    public Room(Hotel hotel, String nomor_kamar)
     {
         this.hotel = hotel;
         this.nomor_kamar = nomor_kamar;
-        this.dailyTariff = dailyTariff;
-        this.status_kamar = StatusKamar.VACANT;
     }
 
     /**
