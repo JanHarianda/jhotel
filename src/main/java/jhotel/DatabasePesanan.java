@@ -84,7 +84,8 @@ public class DatabasePesanan {
      * @param kamar sebagai kamar yang disewa
      * @return cari sebagai objek dari Room
      */
-    public static Pesanan getPesanan(Room kamar) {
+    public static Pesanan getPesananAktif(Room kamar) {
+
         for (Pesanan cari : PESANAN_DATABASE)
         {
             if (cari.getRoom() == kamar)
@@ -145,4 +146,6 @@ public class DatabasePesanan {
         throw new PesananTidakDitemukanException(pesan.getPelanggan());
         //return false;
     }
+
+
 }

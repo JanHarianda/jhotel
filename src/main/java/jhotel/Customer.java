@@ -26,35 +26,42 @@ public class Customer
     protected String nama;
     protected String email;
     protected Date dob;
+    protected String password;
     //GregorianCalendar GregorianCalendar = new GregorianCalendar(int year, int month, int dayOfMonth);
     SimpleDateFormat dobformat = new SimpleDateFormat("dd MMMMMMMMM yyyy");
 
-    public Customer()
-    {
-
-    }
-
     /**
      * Constructor dari kelas pelanggan.
-     * @param namaIn nilai nama dari pelanggan.
+     * @param nama nilai nama dari pelanggan.
      */
 
-    public Customer(String namaIn, int tanggal, int bulan, int tahun, String emailIn)
+    public Customer(String nama, int tanggal, int bulan, int tahun, String email, String password)
     {
-        id = DatabaseCustomer.getLastCustomerID() + 1;
-        nama = namaIn;
+        this.id = DatabaseCustomer.getLastCustomerID() + 1;
+        this.nama = nama;
         this.dob = new GregorianCalendar(tahun, bulan - 1, tanggal).getTime();
-        email = emailIn;
+        this.email = email;
+        this.password = password;
     }
 
-    public Customer(String namaIn, Date dobIn, String emailIn)
+    public Customer(String nama, Date dob, String email, String password)
     {
-        id = DatabaseCustomer.getLastCustomerID() + 1;
-        nama = namaIn;
-        dob = dobIn;
-        email = emailIn;
+       this.id = DatabaseCustomer.getLastCustomerID() + 1;
+        this.nama = nama;
+        this.dob = dob;
+        this.email = email;
+        this.password = password;
     }
 
+    public String getPassword()
+    {
+        return null;
+    }
+
+    public String setPassword()
+    {
+        return password;
+    }
     /**
      * Method yang digunakan untuk mendapatkan nilai ID dari pelanggan.
      * @return int nilai ID dari pelanggan.
