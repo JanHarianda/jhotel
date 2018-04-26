@@ -3,6 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/jhotel.iml" filepath="$PROJECT_DIR$/jhotel.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/jhotel---JanHariandaBarus.iml" filepath="$PROJECT_DIR$/.idea/modules/jhotel---JanHariandaBarus.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/jhotel---JanHariandaBarus_main.iml" filepath="$PROJECT_DIR$/.idea/modules/jhotel---JanHariandaBarus_main.iml" group="jhotel---JanHariandaBarus" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/jhotel---JanHariandaBarus_test.iml" filepath="$PROJECT_DIR$/.idea/modules/jhotel---JanHariandaBarus_test.iml" group="jhotel---JanHariandaBarus" />
     </modules>
   </component>
 </project>
