@@ -1,5 +1,8 @@
 package jhotel;
+import java.text.DateFormat;
 import java.util.Date;
+import java.text.SimpleDateFormat;
+import java.util.*;
 /** 
  * kelas ini memodelkan sistem pesanan dalam memesan kamar hotel
  * 
@@ -7,243 +10,225 @@ import java.util.Date;
  * @version (April 18, 2018)
  */
 
-import java.util.*;
 
 public class Pesanan
 {
-    // Instance variabel pada kelas Pesanan
-    private int id;
     private double biaya;
-    private double jumlahHari;
+    private int id;
     private Customer pelanggan;
-    private boolean isAktif;
+    private double jumlahHari;
     private boolean isDiproses;
     private boolean isSelesai;
+    private boolean isAktif;
     private Room kamar;
     private Date tanggalPesan;
 
+
     /**
-     * Konstruktor kelas Pesanan.
+     * method ini berfungsi untuk mendeklarasikan biaya dan pelanggan
+     * pada saat pembuatan kelas
      *
-     * @param pelanggan sebagai customer pemesan
-     * @param jumlahHari sebagai durasi pesanan
+     * @pram biaya Parameter dengan tipe data double
+     * @pram pelanggan Parameter dengan tipe data Customer
+     * @return tidak ada
      */
-    public Pesanan(double jumlahHari, Customer pelanggan)
-    {
-        this.jumlahHari = jumlahHari;
+    public Pesanan(double jumlahHari, Customer pelanggan) {
         this.pelanggan = pelanggan;
-        this.isAktif = true;
-        //this.biaya = jumlahHari * getRoom().getDailyTariff();
-        this.tanggalPesan = new Date();
-        this.id = DatabasePesanan.getLastPesananID() + 1;
-    }
-
-    /**
-     * Method ini digunakan untuk mengeset ID pesanan.
-     *
-     * @param id sebagai ID pesanan
-     */
-    public void setID(int id)
-    {
-        this.id = id;
-    }
-
-    /**
-     * Method ini digunakan untuk mengubah nilai biaya.
-     */
-    public void setBiaya()
-    {
-        biaya = jumlahHari * getRoom().getDailyTariff();
-    }
-
-    /**
-     * Method ini digunakan untuk mengeset pelanggan.
-     *
-     * @param pelanggan pelanggan yang memesan
-     */
-    public void setPelanggan(Customer pelanggan)
-    {
-        this.pelanggan = pelanggan;
-    }
-
-    /**
-     * Method ini digunakan untuk mengeset durasi menginap.
-     *
-     * @param jumlahHari lamanya pesanan
-     */
-    public void setJumlahHari(double jumlahHari)
-    {
         this.jumlahHari = jumlahHari;
+        tanggalPesan = new GregorianCalendar().getTime();
+        isAktif = true;
+        id = DatabasePesanan.getLastPesananId() + 1;
     }
-
     /**
-     * Method ini digunakan untuk mengeset status pesanan
-     * apakah aktif atau tidak.
+     * method ini berfungsi untuk menampilkan nilai biaya
      *
-     * @param isAktif sebagai parameter status pesanan
+     * @return biaya
      */
-    public void setStatusAktif(boolean isAktif)
-    {
-        this.isAktif = isAktif;
+    public double getBiaya() {
+        return biaya;
     }
-
     /**
-     * Method ini digunakan untuk mengubah status proses menjadi
-     * sedang diproses.
+     * method ini berfungsi untuk menampilkan nilai pelanggan
      *
-     * @param diproses parameter proses pesanan
+     * @return pelanggan
      */
-    public void setStatusDiproses(boolean diproses)
-    {
-        isDiproses = diproses;
-    }
-
-    /**
-     * Method ini digunakan untuk mengubah status proses menjadi
-     * sudah selesai.
-     *
-     * @param diproses parameter selesai pesanan
-     */
-    public void setStatusSelesai(boolean diproses)
-    {
-        isSelesai = diproses;
-    }
-
-    /**
-     * Method ini digunakan untuk mengeset objek kamar.
-     *
-     * @param kamar kamar yang dipesan
-     */
-    public void setRoom(Room kamar)
-    {
-        this.kamar = kamar;
-    }
-
-    /**
-     * Method ini digunakan untuk mengeset tanggal pesanan.
-     *
-     * @param tanggalPesan sebagai waktu pesan
-     */
-    public void setTanggalPesan(Date tanggalPesan)
-    {
-        this.tanggalPesan = tanggalPesan;
-    }
-
-    /**
-     * Method ini digunakan untuk mengambil ID pesanan.
-     *
-     * @return ID pesanan
-     */
-    public int getID()
-    {
+    public int getID() {
         return id;
     }
 
     /**
-     * Method ini digunakan untuk mendapat nilai biaya.
-     *
-     * @return biaya
+     * Method ini berfungsi untuk mendapat data pelanggan
+     * @return pelanggan data pelanggan
      */
-    public double getBiaya()
-    {
-        return biaya;
-    }
-
-    /**
-     * Method ini digunakan untuk mengambil nilai durasi penginapan.
-     *
-     * @return jumlahHari
-     */
-    public double getJumlahHari()
-    {
-        return jumlahHari;
-    }
-
-    /**
-     * Method ini digunakan untuk mengambil objek pelanggan.
-     *
-     * @return pelanggan
-     */
-    public Customer getPelanggan()
-    {
+    public Customer getPelanggan() {
         return pelanggan;
     }
 
     /**
-     * Method ini digunakan untuk mengambil status aktif dari
-     * pesanan.
+     * Method ini berfungsi untuk mendapatkan jumlah hari
+     * @return jumlahHari jumlah hari
+     */
+    public double getJumlahHari() {
+        return jumlahHari;
+    }
+    /**
+     * method ini berfungsi untuk menampilkan status yang telah diproses
      *
-     * @return isAktif
+     * @return isDiproses
+     */
+    public boolean getStatusDiproses() {
+        return isDiproses;
+    }
+    /**
+     * method ini berfungsi untuk menampilkan status yang sudah selesai
+     *
+     * @return isSelesai
+     */
+    public boolean getStatusSelesai() {
+        return isSelesai;
+    }
+
+    /**
+     * Method ini untuk mendapatkan data room
+     *
+     * @return kamar data room
+     *
+     */
+    public Room getRoom() {
+        return kamar;
+    }
+
+    public Date getTanggalPesan() {
+        DateFormat formatter = new SimpleDateFormat("'DOB : 'dd MMMM yyyy");
+        String output = formatter.format(tanggalPesan);
+        System.out.println(output);
+        return tanggalPesan;
+    }
+    /**
+     * Mendapatkan nilai status aktif
+     *
+     * @return isAktif true jika aktif
+     *
      */
     public boolean getStatusAktif()
     {
         return isAktif;
     }
 
-    /**
-     * Method ini digunakan untuk mengetahui status dari proses.
-     *
-     * @return isDiproses
-     */
-    public boolean getStatusDiproses()
-    {
-        return isDiproses;
-    }
 
     /**
-     * Method ini digunakan untuk mengetahui status dari proses.
-     * apakah sudah selesai atau belum.
-     *
-     * @return isSelesai
-     */
-    public boolean getStatusSelesai()
-    {
-        return isSelesai;
-    }
-
-    /**
-     * Method ini digunakan untuk mengambil nilai objek kamar.
-     *
-     * @return kamar
-     */
-    public Room getRoom()
-    {
-        return kamar;
-    }
-
-    public Date getTanggalPesan()
-    {
-        return tanggalPesan;
-    }
-
-    /**
-     * Method ini digunakan untuk menampilkan nama pelanggan,
-     * tipe kamar, dan status.
+     * method ini berfungsi untuk memberikan nilai pada biaya
      *
      * @return tidak ada
      */
-    public String toString() {
+    public void setBiaya() {
+        biaya = jumlahHari * kamar.getDailyTariff();
+    }
 
+    /**
+     * Memberi nilai isAktif
+     *
+     * @param aktif true jika aktif
+     *
+     */
+    public void setStatusAktif(boolean aktif) {
+        isAktif = aktif;
+    }
+
+    /**
+     * Memberi nilai id pesanan
+     *
+     * @param id id
+     *
+     */
+    public void setID(int id) {
+        this.id = id;
+    }
+
+    /**
+     * method ini berfungsi untuk memberikan nilai pada pelanggan
+     *
+     * @return tidak ada
+     */
+
+    public void setPelanggan(Customer baru)
+    {
+        pelanggan = baru;
+    }
+
+    /**
+     * Memberi jumlah hari
+     *
+     * @param jumlahHari hari
+     *
+     */
+    public void setJumlahHari(double jumlahHari)
+    {
+        this.jumlahHari = jumlahHari;
+    }
+    /**
+     * method ini berfungsi untuk memberikan nilai pada status yang
+     * telah diproses
+     *
+     * @return tidak ada
+     */
+    public void setStatusDiproses(boolean diproses){
+        isDiproses = diproses;
+    }
+    /**
+     * method ini berfungsi untuk memberikan nilai pada status yang
+     * telah selesai
+     *
+     * @return tidak ada
+     */
+    public void setStatusSelesai(boolean diproses){
+        isSelesai = diproses;
+    }
+    /**
+     * Memberi nilai kamar
+     *
+     * @param kamar room pada pesanan
+     */
+    public void setRoom(Room kamar)
+    {
+        this.kamar = kamar;
+    }
+
+    public void setTanggalPesan(Date tanggalPesan)
+    {
+        this.tanggalPesan = tanggalPesan;
+    }
+
+    public String toString() {
         String final_status = "KOSONG";
-        if (this.isDiproses && !this.isSelesai) {
+
+        if (isDiproses == true && isSelesai == false){
             final_status = "DIPROSES";
-        } else if (!this.isDiproses && !this.isSelesai) {
+        } else if (isDiproses == false && isSelesai == false){
             final_status = "KOSONG";
-        } else if (!this.isDiproses && this.isSelesai) {
+        } else if (isDiproses == false && isSelesai == true){
             final_status = "SELESAI";
         }
 
-        if (kamar != null) {
-            return "Dibuat oleh " + getPelanggan().getNama()
-                    + ". Proses booking untuk " + getRoom().getHotel().getNama()
-                    + " kamar nomor " + getRoom().getNomorKamar()
-                    + " dengan tipe kamar yang diinginkan " + getRoom().getTipeKamar().toString()
-                    + ". Status: " + final_status + ".\n";
-        } else {
-            return "Dibuat oleh " + getPelanggan().getNama()
-                    + ". Proses booking null "
-                    + "kamar nomor null "
-                    + "dengan tipe kamar yang diinginkan null "
-                    + ". Status: " + final_status + ".";
+        if (getRoom() != null) {
+            return "\n Pesanan" +
+                    "\n pelanggan   : " + pelanggan.getNama() +
+                    "\n jumlah hari : " + jumlahHari +
+                    "\n hotel       : " + kamar.getHotel().getNama() +
+                    "\n kamar       : " + kamar.getNomorKamar() +
+                    "\n tipeKamar   : " + kamar.getTipeKamar() +
+                    "\n status      : " + final_status+
+                    "\n ID          : "+pelanggan.getID()+"\n";
+
         }
-    }}
+        return "\n Pesanan" +
+                "\n pelanggan   : " + pelanggan.getNama() +
+                "\n jumlah hari : " + jumlahHari +
+                "\n hotel       : null" +//kamar.getHotel().getNama()+
+                "\n kamar       : null" +//kamar.getNomorkamar() +
+                "\n tipeKamar   : null" +//kamar.getTipeKamar() +
+                "\n status      : " + final_status+
+                "\n ID          : "+pelanggan.getID()+"\n";
+    }
+
+}

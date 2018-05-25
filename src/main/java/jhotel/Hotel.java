@@ -27,7 +27,7 @@ public class Hotel
         this.nama = nama;
         this.lokasi = lokasi;
         this.bintang = bintang;
-        this.id = DatabaseHotel.getLastHotelID() + 1;
+        id = DatabaseHotel.getLastHotelID() + 1;
     }
 
     /**
@@ -115,9 +115,10 @@ public class Hotel
      */
     public String toString()
     {
-        return ("Nama hotel  : " + getNama() +
-                "\nLokasi hotel: " + getLokasi().getDeskripsi() +
-                "\nBintang     : " + getBintang());
+        return  "\nNama hotel    : " + nama +
+                "\nLokasi hotel  : " + lokasi.getDeskripsi() +
+                "\nBintang       : " + bintang +
+                "\nid           : "+id;
     }
 }
 

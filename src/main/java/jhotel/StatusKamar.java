@@ -8,18 +8,21 @@ package jhotel;
  */
 public enum StatusKamar
 {
-    BOOKED("Booked"), PROCESSED("Processed"), VACANT("Vacant");
+    BOOKED("Booked"),
+    PROCESSED("Processed"),
+    VACANT("Vacant");
 
-    private final String status;
+    private String deskripsi;
 
     /**
      * Method StatusKamar merupakan constructor dari class enum StatusKamar
      *
-     * @param status sebagai status kamar
+     * @param deskripsi sebagai status kamar
      */
-    private StatusKamar(String status)
+    StatusKamar(String deskripsi)
+
     {
-        this.status = status;
+        this.deskripsi = deskripsi;
     }
 
     /**
@@ -29,6 +32,6 @@ public enum StatusKamar
      */
     public String toString()
     {
-        return ("Status kamar : " + this.status);
+        return deskripsi;
     }
 }

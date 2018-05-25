@@ -24,6 +24,7 @@ public abstract class Room
     {
         this.hotel = hotel;
         this.nomor_kamar = nomor_kamar;
+        status_kamar = StatusKamar.VACANT;
     }
 
     /**
@@ -118,19 +119,20 @@ public abstract class Room
      */
     public String toString()
     {
-        //DatabasePesanan.getPesanan(this);
-        if(DatabasePesanan.getPesananAktif(this) == null){
-            return ("Nama hotel  : " + getHotel().getNama() +
+        if(DatabasePesanan.getPesananAktif(this) == null){//DatabasePesanan.getPesanan(this) == null){
+            return "\nNama hotel  : " + hotel.toString() +
                     "\nTipe kamar  : " + getTipeKamar() +
-                    "\nHarga       : IDR " + getDailyTariff() +
-                    "\nStatus kamar: " + getStatusKamar());
+                    "\nNomorKamar  : " + nomor_kamar +
+                    "\nHarga       : " + dailyTariff +
+                    "\nStatus kamar: " + status_kamar;
         }
-        else {
-            return ("Nama hotel  : " + getHotel().getNama() +
-                    "\nTipe kamar  : " + getTipeKamar() +
-                    "\nHarga       : IDR " + getDailyTariff() +
-                    "\nStatus kamar: " + getStatusKamar() +
-                    "\nPelanggan   : " + DatabasePesanan.getPesananAktif(this).getPelanggan());
+        else{
+            return "\nNama hotel  : " + hotel.toString() +
+                    "\nTipe kamar  : " + getTipeKamar().toString() +
+                    "\nNomorKamar : " + nomor_kamar+
+                    "\nHarga       : " + dailyTariff +
+                    "\nStatus kamar: " + status_kamar +
+                    "\nPelanggan   : " + DatabasePesanan.getPesananAktif(this).getPelanggan().getNama();
         }
     }
 }

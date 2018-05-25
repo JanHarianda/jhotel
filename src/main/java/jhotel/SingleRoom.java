@@ -8,7 +8,7 @@ package jhotel;
 public class SingleRoom extends Room
 {
     // instance variables
-    private static TipeKamar TIPE_KAMAR = TipeKamar.SINGLE;
+    private  TipeKamar TIPE_KAMAR = TipeKamar.SINGLE;
 
     /**
      * Konstruktor dari class SingleRoom.

@@ -17,7 +17,8 @@ public class RoomTidakDitemukanException extends Exception
 
     public RoomTidakDitemukanException(Hotel hotel_input, String room_input)
     {
-        super("Kamar dengan nomor ruang ");
+        super("Kamar yang terletak di ");
+        room_error = room_input;
         hotel_error = hotel_input;
 
     }

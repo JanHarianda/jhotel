@@ -3,10 +3,11 @@ package jhotel;
 import static jhotel.StatusKamar.VACANT;
 
 /**
- * kelas Administrasi
+ * kelas Administrasi berfungsi sebagai tempat proses pesanan
+ * kamar pada jhotel
  * 
  * @author (Jan Harianda Barus)
- * @version (April 18, 2018)
+ * @version (May 18, 2018)
  * 
  */
 public class Administrasi
@@ -27,36 +28,34 @@ public class Administrasi
      */
     public static void pesananDitugaskan(Pesanan pesan, Room kamar)
     {
-        if (kamar.getStatusKamar() == VACANT) {
-            pesan.setStatusAktif(true);
-            pesan.setStatusSelesai(false);
-            pesan.setStatusDiproses(true);
-            pesan.setRoom(kamar);
-            kamar.setStatusKamar(StatusKamar.BOOKED);
+        if (pesan != null && kamar != null) {
+            if (kamar.getStatusKamar().equals(VACANT))
+            {
+                pesan.setStatusDiproses(true);
+                pesan.setStatusSelesai(false);
+                pesan.setRoom(kamar);
+
+                roomAmbilPesanan(pesan, kamar);
+                pesan.setBiaya();
+            } else {
+                pesan.setStatusAktif(false);
+            }
         }
-            else
-                {
-                    pesan.setStatusAktif(false);
-        }
-        }
+    }
 
 
-
-
-
-    /*
+    /**
+     * Method ini untuk menyatakan bahwa status ruangan sudah berubah menjadi “booked”
+     * dan “ter-link” dengan objek Pesanan yang diberikan.
+     *
+     * @param pesan objek pesanan
+     * @param kamar objek kamar
+     *
+     */
     public static void roomAmbilPesanan(Pesanan pesan, Room kamar)
     {
         kamar.setStatusKamar(StatusKamar.BOOKED);
     }
-    */
-
-    /*
-    public static void roomLepasPesanan(Room kamar)
-    {
-        kamar.setStatusKamar(StatusKamar.VACANT);
-    }
-    */
 
     /**
      * Method ini untuk mengubah status pesanan dan status
@@ -67,12 +66,11 @@ public class Administrasi
      */
     public static void pesananDibatalkan(Room kamar)
     {
-        //kamar.getPesanan().setStatusSelesai(false);
-        //kamar.getPesanan().setStatusDiproses(false);
-        //kamar.getPesanan().setRoom(null);
-        kamar.setStatusKamar(VACANT);
-        //pesan.setStatusAktif(false);
-        //roomLepasPesanan(kamar);
+        Pesanan pesan = DatabasePesanan.getPesananAktif(kamar);
+        pesan.setStatusSelesai(false);
+        pesan.setStatusDiproses(false);
+        roomLepasPesanan(kamar);
+        pesan.setStatusAktif(false);
     }
 
     /**
@@ -84,14 +82,12 @@ public class Administrasi
      */
     public static void pesananSelesai(Room kamar)
     {
-        //Pesanan pesan = kamar.getPesanan();
         Pesanan pesan = DatabasePesanan.getPesananAktif(kamar);
+
         pesan.setStatusSelesai(true);
         pesan.setStatusDiproses(false);
-        pesan.setStatusAktif(false);
-        //kamar.setPesanan(null);
-        //kamar.setStatusKamar(StatusKamar.VACANT);
         roomLepasPesanan(kamar);
+        pesan.setStatusAktif(false);
     }
 
     /**
@@ -104,10 +100,8 @@ public class Administrasi
     public static void pesananDibatalkan(Pesanan pesan)
     {
         roomLepasPesanan(pesan.getRoom());
-
         pesan.setStatusSelesai(false);
         pesan.setStatusDiproses(false);
-        //pesan.setRoom(null);
         pesan.setStatusAktif(false);
     }
     public static void roomLepasPesanan(Room kamar)
@@ -124,10 +118,10 @@ public class Administrasi
      */
     public static void pesananSelesai(Pesanan pesan)
     {
-        //pesan.getRoom().setStatusKamar(StatusKamar.VACANT);
+        roomLepasPesanan(pesan.getRoom());
+
         pesan.setStatusSelesai(true);
         pesan.setStatusDiproses(false);
-       // pesan.setRoom(null);
         pesan.setStatusAktif(false);
     }
 }

@@ -1,4 +1,5 @@
 package jhotel;
+import org.springframework.core.type.StandardMethodMetadata;
 import java.util.ArrayList;
 
 /**
@@ -14,16 +15,20 @@ public class DatabaseCustomer
     private static int LAST_CUSTOMER_ID = 0;
 
     /**
-     * Konstruktor dari class DatabaseCustomer.
+     * Method yang digunakan untuk mengambil data pelanggan dari dalam database.
+     *
+     * @return ArrayList<Customer> mengembalikan data dari database.
      */
-    public DatabaseCustomer()
-    {
-    }
 
     public static ArrayList<Customer> getCustomerDatabase()
     {
         return CUSTOMER_DATABASE;
     }
+
+    /**
+     * Method yang digunakan untuk mengambil data id terakhir dari dalam database.
+     * @return int mengembalikan data id terakhir dari database.
+     */
 
     public static int getLastCustomerID()
     {
@@ -38,15 +43,14 @@ public class DatabaseCustomer
      */
     public static boolean addCustomer(Customer baru) throws PelangganSudahAdaException
     {
-        for(Customer cari : CUSTOMER_DATABASE){
-            if(baru.getID() == cari.getID() || cari.getEmail().equals(baru.getEmail())){
+        for (int i = 0; i < CUSTOMER_DATABASE.size(); i++) {
+            Customer tes = CUSTOMER_DATABASE.get(i);
+            if (tes.getID()== baru.getID()||tes.getEmail().equals(baru.getEmail())){
                 throw new PelangganSudahAdaException(baru);
-                //return false
             }
         }
-
+        LAST_CUSTOMER_ID=baru.getID();
         CUSTOMER_DATABASE.add(baru);
-        LAST_CUSTOMER_ID = baru.getID();
         return true;
     }
 
@@ -58,22 +62,22 @@ public class DatabaseCustomer
      */
     public static Customer getCustomer(int id)
     {
-        for(Customer cari : CUSTOMER_DATABASE)
-        {
-            if(cari.getID() == id)
-            {
-                return cari;
+        for (int i = 0; i < CUSTOMER_DATABASE.size(); i++) {
+            Customer tes = CUSTOMER_DATABASE.get(i);
+            if (tes.getID()==id){
+                return tes;
             }
         }
-
         return null;
     }
 
     public static Customer getCustomerLogin(String email, String password)
     {
-        for (Customer cust : CUSTOMER_DATABASE) {
-            if (cust.getEmail() == email && cust.getPassword() == password)
-                return cust;
+        for (int i = 0; i < CUSTOMER_DATABASE.size(); i++) {
+            Customer tes = CUSTOMER_DATABASE.get(i);
+            if (tes.getEmail().equals(email)&&tes.getPassword().equals(password)){
+                return tes;
+            }
         }
         return null;
     }
@@ -87,29 +91,22 @@ public class DatabaseCustomer
      */
     public static boolean removeCustomer(int id) throws PelangganTidakDitemukanException
     {
-        for(Customer pelanggan : CUSTOMER_DATABASE)
-        {
-            if(pelanggan.getID() == id)
-            {
-                try
-                {
-                    DatabasePesanan.removePesanan(
-                            DatabasePesanan.getPesananAktif(pelanggan));
+        for (int i = 0; i < CUSTOMER_DATABASE.size(); i++) {
+            Customer tes = CUSTOMER_DATABASE.get(i);
+            if (tes.getID()==id){
+                Pesanan pesan = DatabasePesanan.getPesananAktif(tes);
+                try {
+                    DatabasePesanan.removePesanan(tes);
+                } catch (PesananTidakDitemukanException test){
+                    System.out.println(test.getPesan());
                 }
-                catch(PesananTidakDitemukanException a)
-                {
-                    throw new PelangganTidakDitemukanException(id);
-                }
-
-                if(CUSTOMER_DATABASE.remove(pelanggan))
+                if(CUSTOMER_DATABASE.remove(tes))
                 {
                     return true;
                 }
             }
         }
-
         throw new PelangganTidakDitemukanException(id);
-        //return false;
     }
 
 }

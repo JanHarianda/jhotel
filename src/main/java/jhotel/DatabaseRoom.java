@@ -7,66 +7,9 @@ import java.util.ArrayList;
  * @author (Jan Harianda Barus)
  * @version (April 18, 2018)
  */
-public class DatabaseRoom extends DatabasePesanan
+public class DatabaseRoom
 {
-    // instance variables - replace the example below with your own
     private static ArrayList<Room> ROOM_DATABASE = new ArrayList<Room>();
-
-    /**
-     * Konstruktor untuk kelas DatabaseRoom
-     */
-    public DatabaseRoom()
-    {
-
-    }
-
-    /**
-     * Method ini digunakan untuk menambah kamar.
-     *
-     * @param  baru dengan tipe data Customer
-     * @return false
-     */
-    public static boolean addRoom(Room baru) throws RoomSudahAdaException
-    {
-        for(Room kamar : ROOM_DATABASE)
-        {
-            if(kamar.getHotel().equals(baru.getHotel()) &&
-                    kamar.getNomorKamar().equals(baru.getNomorKamar()))
-            {
-                throw new RoomSudahAdaException(kamar);
-                //return false;
-            }
-        }
-
-        ROOM_DATABASE.add(baru);
-        return true;
-    }
-
-    /**
-     * Method ini digunakan untuk menghapus ruangan.
-     *
-     * @param hotel hotel pemilik kamar
-     * @param nomor_kamar nomor kamar
-     * @return boolean false
-     */
-    public static boolean removeRoom(Hotel hotel, String nomor_kamar) throws RoomTidakDitemukanException
-    {
-        for(Room kamar : ROOM_DATABASE)
-        {
-            if(kamar.getHotel().equals(hotel) &&
-                    kamar.getNomorKamar().equals(nomor_kamar))
-            {
-                Administrasi.pesananDibatalkan(kamar);
-                if(ROOM_DATABASE.remove(kamar))
-                {
-                    return true;
-                }
-            }
-        }
-
-        throw new RoomTidakDitemukanException(hotel, nomor_kamar);
-        //return false;
-    }
 
     /**
      * Method ini digunakan untuk mengambil database kamar.
@@ -79,24 +22,40 @@ public class DatabaseRoom extends DatabasePesanan
     }
 
     /**
+     * Method ini digunakan untuk menambah kamar.
+     *
+     * @param  baru dengan tipe data Customer
+     * @return false
+     */
+
+    public static boolean addRoom(Room baru) throws RoomSudahAdaException
+    {
+        for (int i = 0; i < ROOM_DATABASE.size(); i++) {
+            Room tes = ROOM_DATABASE.get(i);
+            if (tes.getHotel().equals(baru.getHotel())&&tes.getNomorKamar()==baru.getNomorKamar()){
+                throw new RoomSudahAdaException(baru);
+            }
+        }
+        ROOM_DATABASE.add(baru);
+        return true;
+    }
+
+    /**
      * Method ini digunakan untuk mengambil nomor hotel
      *
      * @param hotel hotel
      * @param nomor_kamar nomor kamar
      * @return null
      */
-    public static Room getRoom(Hotel hotel, String nomor_kamar)
-    {
-        for(Room cari : ROOM_DATABASE){
-            if(cari.getHotel() == hotel &&
-                    cari.getNomorKamar() == nomor_kamar){
-                return cari;
+    public static Room getRoom(Hotel hotel, String nomor_kamar){
+        for (int i = 0; i < ROOM_DATABASE.size(); i++) {
+            Room tes = ROOM_DATABASE.get(i);
+            if (tes.getHotel().equals(hotel)&&tes.getNomorKamar().equals(nomor_kamar)){
+                return tes;
             }
         }
-
         return null;
     }
-
 
     /**
      *
@@ -105,18 +64,15 @@ public class DatabaseRoom extends DatabasePesanan
      * @param hotel hotel
      * @return roomsFromHotel
      */
-    public static ArrayList<Room> getRoomsFromHotel(Hotel hotel)
-    {
-        ArrayList<Room> roomsFromHotel = new ArrayList<Room>();
-        for(Room cari : ROOM_DATABASE)
-        {
-            if(cari.getHotel() == hotel)
-            {
-                roomsFromHotel.add(cari);
+    public static ArrayList<Room> getRoomsFromHotel(Hotel hotel){
+        ArrayList<Room> REQUEST_ROOM = new ArrayList<Room>();
+        for (int i = 0; i < ROOM_DATABASE.size(); i++) {
+            Room tes = ROOM_DATABASE.get(i);
+            if (tes.getHotel().equals(hotel)){
+                REQUEST_ROOM.add(tes);
             }
         }
-
-        return roomsFromHotel;
+        return REQUEST_ROOM;
     }
 
     /**
@@ -124,18 +80,44 @@ public class DatabaseRoom extends DatabasePesanan
      *
      * @return vacant rooms
      */
-    public static ArrayList<Room> getVacantRooms()
-    {
-        ArrayList<Room> vacantRooms = new ArrayList<Room>();
-        for(Room cari : ROOM_DATABASE)
-        {
-            if(cari.getStatusKamar() == StatusKamar.VACANT)
-            {
-                vacantRooms.add(cari);
+    public static ArrayList<Room> getVacantRooms(){
+        ArrayList<Room> REQUEST_ROOM = new ArrayList<Room>();
+        for (int i = 0; i < ROOM_DATABASE.size(); i++) {
+            Room tes = ROOM_DATABASE.get(i);
+            if (tes.getStatusKamar()==StatusKamar.VACANT){
+                REQUEST_ROOM.add(tes);
             }
         }
-
-        return vacantRooms;
+        return REQUEST_ROOM;
     }
+
+    /**
+     * Method ini digunakan untuk menghapus ruangan.
+     *
+     * @param hotel hotel pemilik kamar
+     * @param nomor_kamar nomor kamar
+     * @return boolean false
+     */
+    public static boolean removeRoom(Hotel hotel, String nomor_kamar) throws RoomTidakDitemukanException
+    {
+        for (int i = 0; i < ROOM_DATABASE.size(); i++) {
+            Room tes = ROOM_DATABASE.get(i);
+            if (tes.getHotel().equals(hotel)&&tes.getNomorKamar()==nomor_kamar){
+                if(DatabasePesanan.getPesananAktif(tes) != null)
+                {
+                    Administrasi.pesananDibatalkan(tes);
+                }
+
+                if(ROOM_DATABASE.remove(tes))
+                {
+                    return true;
+                }
+            }
+        }
+        throw new RoomTidakDitemukanException(hotel, nomor_kamar);
+    }
+
+
+
 
 }

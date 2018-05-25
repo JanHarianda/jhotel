@@ -14,14 +14,6 @@ public class DatabaseHotel
     private static int LAST_HOTEL_ID = 0;
 
     /**
-     * Konstruktor for objects of class DatabaseHotel
-     */
-    public DatabaseHotel()
-    {
-
-    }
-
-    /**
      * Method ini digunakan untuk mengambil database hotel.
      *
      * @return HOTEL_DATABASE
@@ -49,19 +41,14 @@ public class DatabaseHotel
      */
     public static boolean addHotel(Hotel baru) throws HotelSudahAdaException
     {
-        for(Hotel hotel : HOTEL_DATABASE)
-        {
-            if(hotel.getID() == baru.getID() ||
-                    (hotel.getNama().equals(baru.getNama()) &&
-                            hotel.getLokasi().equals(baru.getLokasi())))
-            {
-                throw new HotelSudahAdaException(hotel);
-                //return false;
+        for (int i = 0; i < HOTEL_DATABASE.size(); i++) {
+            Hotel tes = HOTEL_DATABASE.get(i);
+            if (tes.getID()==baru.getID()|| (tes.getNama()==baru.getNama()&&tes.getLokasi()==baru.getLokasi())){
+                throw new HotelSudahAdaException(baru);
             }
         }
-
+        LAST_HOTEL_ID=baru.getID();
         HOTEL_DATABASE.add(baru);
-        LAST_HOTEL_ID = baru.getID();
         return true;
     }
 
@@ -71,13 +58,11 @@ public class DatabaseHotel
      * @param id sebagai ID hotel
      * @return cari sebagai objek dari hotel yang dipanggil
      */
-    public static Hotel getHotel(int id)
-    {
-        for(Hotel hotel : HOTEL_DATABASE)
-        {
-            if(hotel.getID() == id)
-            {
-                return hotel;
+    public static Hotel getHotel(int id){
+        for (int i = 0; i < HOTEL_DATABASE.size(); i++) {
+            Hotel tes = HOTEL_DATABASE.get(i);
+            if (tes.getID()==id){
+                return tes;
             }
         }
         return null;
@@ -91,33 +76,25 @@ public class DatabaseHotel
      */
     public static boolean removeHotel(int id) throws HotelTidakDitemukanException
     {
-        for(Hotel hotel : HOTEL_DATABASE)
-        {
-            if(hotel.getID() == id)
-            {
-                ArrayList<Room> tempRoom = new ArrayList<Room>();
-                tempRoom = DatabaseRoom.getRoomsFromHotel(hotel);
-
-                for(Room kamar : tempRoom)
-                {
-                    try
-                    {
-                        DatabaseRoom.removeRoom(hotel, kamar.getNomorKamar());
-                    }
-                    catch(RoomTidakDitemukanException a)
-                    {
-                        return false;
+        for (int i = 0; i < HOTEL_DATABASE.size(); i++) {
+            Hotel tes = HOTEL_DATABASE.get(i);
+            if (tes.getID()==id){
+                ArrayList<Room> KAMAR_TEST = DatabaseRoom.getRoomsFromHotel(tes);
+                for (int x = 0; x < KAMAR_TEST.size(); x++){
+                    Room kamar = KAMAR_TEST.get(x);
+                    try {
+                        DatabaseRoom.removeRoom(tes, kamar.getNomorKamar());
+                    } catch (RoomTidakDitemukanException test){
+                        System.out.println(test.getPesan());
                     }
                 }
-
-                if(HOTEL_DATABASE.remove(hotel))
+                if(HOTEL_DATABASE.remove(tes))
                 {
                     return true;
                 }
             }
         }
         throw new HotelTidakDitemukanException(id);
-        //return false;
     }
 
 }

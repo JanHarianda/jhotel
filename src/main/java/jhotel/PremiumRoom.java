@@ -29,7 +29,7 @@ public class PremiumRoom extends Room
      */
     public void setDailyTariff(double dailytariff)
     {
-        dailytariff *= DISCOUNT;
+        super.dailyTariff = dailyTariff * DISCOUNT;
     }
 
     /**
