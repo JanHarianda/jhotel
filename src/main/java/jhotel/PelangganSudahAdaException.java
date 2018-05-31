@@ -1,35 +1,29 @@
 package jhotel;
-/**
- * kelas ini menjelaskan tentang Pelanggan yang sudah ada exception
- *
- * @author Jan Harianda Barus
- * @version April 19, 2018
- */
+
 public class PelangganSudahAdaException extends Exception {
     private Customer pelanggan_error;
 
-
     /**
-     * Konstruktor pada kelas Pelanggan SudahAdaException
+     * constructor untuk kelas PelangganSudahAdaException
      *
-     * @param pelanggan_input sebagai nilai cek pesanan
+     * @param pelanggan_input objek Customer
      */
     public PelangganSudahAdaException(Customer pelanggan_input)
     {
-        super("Pelanggan dengan data: ");
-        pelanggan_error = pelanggan_input;
+        super("Pelanggan dengan data : ");
+        pelanggan_error=pelanggan_input;
     }
-
     /**
+     * mendapatkan pesan error untuk exception
      *
-     * Method untuk mendapatkan pesan Exception
-     * @return String
+     * @return string
      */
-    public String getPesan()
-    {
-        return super.getMessage() + pelanggan_error + "sudah terdaftar" ;
+    public String getPesan(){
+        return super.getMessage() +
+                "\nID       : "+ pelanggan_error.getID()+
+                "\nNama     : "+pelanggan_error.getNama()+
+                "\nEmail    : "+pelanggan_error.getEmail()+
+                "\nSudah terdaftar.";
+
     }
-
-
-
 }

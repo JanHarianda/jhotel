@@ -28,18 +28,22 @@ public class Administrasi
      */
     public static void pesananDitugaskan(Pesanan pesan, Room kamar)
     {
-        if (pesan != null && kamar != null) {
-            if (kamar.getStatusKamar().equals(VACANT))
+        if(pesan != null && kamar != null)
+        {
+            if(kamar.getStatusKamar().equals(StatusKamar.VACANT))
             {
-                pesan.setStatusDiproses(true);
                 pesan.setStatusSelesai(false);
+                pesan.setStatusDiproses(true);
                 pesan.setRoom(kamar);
 
                 roomAmbilPesanan(pesan, kamar);
                 pesan.setBiaya();
-            } else {
+            }
+            else
+            {
                 pesan.setStatusAktif(false);
             }
+
         }
     }
 
@@ -64,13 +68,13 @@ public class Administrasi
      *
      * @param kamar  sebagai penanda kamar yang diproses
      */
-    public static void pesananDibatalkan(Room kamar)
-    {
+    public static void pesananDibatalkan(Room kamar){
         Pesanan pesan = DatabasePesanan.getPesananAktif(kamar);
         pesan.setStatusSelesai(false);
         pesan.setStatusDiproses(false);
-        roomLepasPesanan(kamar);
         pesan.setStatusAktif(false);
+        roomLepasPesanan(kamar);
+
     }
 
     /**
@@ -80,14 +84,12 @@ public class Administrasi
      *
      * @param kamar sebagai penanda kamar yang diproses
      */
-    public static void pesananSelesai(Room kamar)
-    {
+    public static void pesananSelesai(Room kamar){
         Pesanan pesan = DatabasePesanan.getPesananAktif(kamar);
-
         pesan.setStatusSelesai(true);
         pesan.setStatusDiproses(false);
-        roomLepasPesanan(kamar);
         pesan.setStatusAktif(false);
+        roomLepasPesanan(kamar);
     }
 
     /**
@@ -104,6 +106,11 @@ public class Administrasi
         pesan.setStatusDiproses(false);
         pesan.setStatusAktif(false);
     }
+
+    /**
+     * Method ini untuk merubah status pesanan
+     * @param kamar objek kamar
+     */
     public static void roomLepasPesanan(Room kamar)
     {
         kamar.setStatusKamar(VACANT);
@@ -119,7 +126,6 @@ public class Administrasi
     public static void pesananSelesai(Pesanan pesan)
     {
         roomLepasPesanan(pesan.getRoom());
-
         pesan.setStatusSelesai(true);
         pesan.setStatusDiproses(false);
         pesan.setStatusAktif(false);

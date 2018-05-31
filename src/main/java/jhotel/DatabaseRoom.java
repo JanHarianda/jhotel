@@ -1,4 +1,5 @@
 package jhotel;
+
 import java.util.ArrayList;
 
 /**
@@ -10,16 +11,6 @@ import java.util.ArrayList;
 public class DatabaseRoom
 {
     private static ArrayList<Room> ROOM_DATABASE = new ArrayList<Room>();
-
-    /**
-     * Method ini digunakan untuk mengambil database kamar.
-     *
-     * @return null
-     */
-    public static ArrayList<Room> getRoomDatabase()
-    {
-        return ROOM_DATABASE;
-    }
 
     /**
      * Method ini digunakan untuk menambah kamar.
@@ -117,7 +108,14 @@ public class DatabaseRoom
         throw new RoomTidakDitemukanException(hotel, nomor_kamar);
     }
 
-
-
+    /**
+     * Method ini digunakan untuk mengambil database kamar.
+     *
+     * @return null
+     */
+    public static ArrayList<Room> getRoomDatabase()
+    {
+        return ROOM_DATABASE;
+    }
 
 }

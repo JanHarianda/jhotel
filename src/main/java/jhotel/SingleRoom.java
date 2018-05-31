@@ -18,7 +18,6 @@ public class SingleRoom extends Room
      */
     public SingleRoom(Hotel hotel, String nomor_kamar)
     {
-        // initialise instance variables
         super(hotel, nomor_kamar);
     }
 

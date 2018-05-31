@@ -20,7 +20,6 @@ public enum StatusKamar
      * @param deskripsi sebagai status kamar
      */
     StatusKamar(String deskripsi)
-
     {
         this.deskripsi = deskripsi;
     }

@@ -8,7 +8,9 @@ package jhotel;
  */
 public enum TipeKamar
 {
-    SINGLE("Single"), DOUBLE("Double"), PREMIUM("Premium");
+    SINGLE("Single"),
+    DOUBLE("Double"),
+    PREMIUM("Premium");
 
     private String deskripsi;
 

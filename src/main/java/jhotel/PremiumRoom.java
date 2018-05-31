@@ -23,13 +23,13 @@ public class PremiumRoom extends Room
     }
 
     /**
-     * Method ini digunakan untuk mengeset tarif harian.
+     * Method ini digunakan untuk mengambil nilai tipe kamar.
      *
-     * @param   dailytariff tarif sewa harian kamar
+     * @return    TIPE_KAMAR
      */
-    public void setDailyTariff(double dailytariff)
+    public TipeKamar getTipeKamar()
     {
-        super.dailyTariff = dailyTariff * DISCOUNT;
+        return TIPE_KAMAR;
     }
 
     /**
@@ -43,12 +43,14 @@ public class PremiumRoom extends Room
     }
 
     /**
-     * Method ini digunakan untuk mengambil nilai tipe kamar.
+     * Method ini digunakan untuk mengeset tarif harian.
      *
-     * @return    TIPE_KAMAR
+     * @param   dailytariff tarif sewa harian kamar
      */
-    public TipeKamar getTipeKamar()
+    public void setDailyTariff(double dailytariff)
     {
-        return TIPE_KAMAR;
+        super.dailyTariff = dailyTariff * DISCOUNT;
     }
+
+
 }

@@ -8,17 +8,32 @@ package jhotel;
  */
 public abstract class Room
 {
-    // instance variables
+    // instance variables - replace the example below with your own
     private Hotel hotel;
     private String nomor_kamar;
-    protected double dailyTariff;
+    public double dailyTariff;
     private StatusKamar status_kamar;
 
+
+
     /**
-     * Konstruktor dari class Room.
+     * Constructor for objects of class Room
+     */
+    /* perubahan pada modul 6
+    public Room(Hotel hotel, String nomor_kamar, boolean isAvailable, StatusKamar status_kamar)
+    {
+        this.hotel = hotel;
+        this.nomor_kamar = nomor_kamar;
+        this.isAvailable = isAvailable;
+        this.status_kamar = status_kamar;
+    }
+    */
+
+    /**
+     * Overloading Constructor untuk kelas Room
      *
-     * @param hotel sebagai hotel yang memiliki kamar
-     * @param nomor_kamar  nomor kamar
+     * @param hotel objek hotel
+     * @param nomor_kamar nilai nomor kamar
      */
     public Room(Hotel hotel, String nomor_kamar)
     {
@@ -28,57 +43,17 @@ public abstract class Room
     }
 
     /**
-     * Method ini digunakan untuk mengeset hotel.
-     *
-     * @param hotel hotel pemilik kamar
-     */
-    public void setHotel(Hotel hotel)
-    {
-        this.hotel = hotel;
-    }
-
-    /**
-     * Method ini digunakan untuk mengeset nomor kamar.
-     *
-     * @param nomor_kamar sebagai nomor kamar
-     */
-    public void setNomorKamar(String nomor_kamar)
-    {
-        this.nomor_kamar = nomor_kamar;
-    }
-
-    /**
-     * Method untuk digunakan mengeset tarif per hari.
-     *
-     * @param dailyTariff sebagai tarif sewa harian
-     */
-    public void setDailyTariff(double dailyTariff)
-    {
-        this.dailyTariff = dailyTariff;
-    }
-
-    /**
-     * Method digunakan untuk mengeset status kamar.
-     *
-     * @param status_kamar status kamar
-     */
-    public void setStatusKamar(StatusKamar status_kamar)
-    {
-        this.status_kamar = status_kamar;
-    }
-
-    /**
-     * Method digunakan untuk mengambil nilai hotel.
+     * untuk mendapatkan nilai hotel.
      *
      * @return hotel
      */
     public Hotel getHotel()
     {
         return hotel;
-    }
+    }// put your code here
 
     /**
-     * Method ini digunakan untuk mengambil nilai nomor kamar.
+     * untuk mendapatkan nilai nomor kamar.
      *
      * @return nomor_kamar
      */
@@ -88,7 +63,7 @@ public abstract class Room
     }
 
     /**
-     * Method ini digunakan untuk mengambil nilai tarif harian.
+     * untuk mendapatkan nilai tarif.
      *
      * @return dailyTariff
      */
@@ -98,7 +73,7 @@ public abstract class Room
     }
 
     /**
-     * Method ini digunakan untuk mengambil status kamar.
+     * untuk mengetahui status kamar.
      *
      * @return status_kamar
      */
@@ -108,33 +83,68 @@ public abstract class Room
     }
 
     /**
-     * Method ini digunakan untuk mengambil nilai tipe kamar.
+     * abstract method untuk mendapatkan tipe kamar
+     *
      */
     public abstract TipeKamar getTipeKamar();
 
+
     /**
-     * Method untuk mengembalikan informasi kamar.
+     * digunakan untuk menset nilai hotel.
      *
-     * @return informasi kamar
+     * @param hotel objek hotel
      */
-    public String toString()
+    public void setHotel(Hotel hotel)
     {
-        if(DatabasePesanan.getPesananAktif(this) == null){//DatabasePesanan.getPesanan(this) == null){
-            return "\nNama hotel  : " + hotel.toString() +
+        this.hotel = hotel;
+    }
+
+    /**
+     * digunakan untuk menset nilai nomor kamar.
+     *
+     * @param nomor_kamar nilai nomor kamar
+     */
+    public void setNomorKamar(String nomor_kamar)
+    {
+        this.nomor_kamar = nomor_kamar;
+    }
+
+    /**
+     * untuk menset nilai tarif.
+     *
+     * @param dailyTariff nilai daily tariff
+     */
+    public void setDailyTariff(double dailyTariff)
+    {
+        this.dailyTariff = dailyTariff;
+    }
+
+    /**
+     * untuk menset nilai status kamar.
+     *
+     * @param status_kamar nilai status kamar
+     */
+    public void setStatusKamar(StatusKamar status_kamar)
+    {
+        this.status_kamar = status_kamar;
+    }
+
+    public String toString(){
+        if(DatabasePesanan.getPesananAktif(this) == null){
+            return "\nNama hotel  : " + hotel.getNama() +
                     "\nTipe kamar  : " + getTipeKamar() +
-                    "\nNomorKamar  : " + nomor_kamar +
                     "\nHarga       : " + dailyTariff +
                     "\nStatus kamar: " + status_kamar;
         }
         else{
-            return "\nNama hotel  : " + hotel.toString() +
+            return "\nNama hotel  : " + hotel.getNama() +
                     "\nTipe kamar  : " + getTipeKamar().toString() +
-                    "\nNomorKamar : " + nomor_kamar+
                     "\nHarga       : " + dailyTariff +
                     "\nStatus kamar: " + status_kamar +
                     "\nPelanggan   : " + DatabasePesanan.getPesananAktif(this).getPelanggan().getNama();
         }
     }
+
 }
 
 

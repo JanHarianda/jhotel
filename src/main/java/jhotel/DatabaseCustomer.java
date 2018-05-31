@@ -1,96 +1,109 @@
 package jhotel;
-import org.springframework.core.type.StandardMethodMetadata;
 import java.util.ArrayList;
 
 /**
- * Kelas ini menjelaskan tentang database customer, dimana ada add, remove, dan melihat databse customer
- * 
- * @author (Jan Harianda Barus)
- * @version (April 18, 2018)
+ * Kelas ini untuk menunjukkan serta mengelola informasi mengenai Data Customer Hotel
+ *
+ * @author Jan Harianda
+ * @version 20-05-2018
  */
-public class DatabaseCustomer
-{
-    // Instance variable yang digunakan pada class
+public class DatabaseCustomer {
     private static ArrayList<Customer> CUSTOMER_DATABASE = new ArrayList<Customer>();
     private static int LAST_CUSTOMER_ID = 0;
 
     /**
-     * Method yang digunakan untuk mengambil data pelanggan dari dalam database.
+     * method untuk membuat arraylist berisi customer
      *
-     * @return ArrayList<Customer> mengembalikan data dari database.
+     * @return CUSTOMER_DATABASE
      */
-
-    public static ArrayList<Customer> getCustomerDatabase()
-    {
+    public static ArrayList<Customer> getCustomerDatabase() {
         return CUSTOMER_DATABASE;
     }
 
     /**
-     * Method yang digunakan untuk mengambil data id terakhir dari dalam database.
-     * @return int mengembalikan data id terakhir dari database.
+     * digunakan untuk mendapatkan ID dari customer terakhir
+     *
+     * @return LAST_CUSTOMER_ID
      */
-
-    public static int getLastCustomerID()
-    {
+    public static int getLastCustomerID() {
         return LAST_CUSTOMER_ID;
     }
 
     /**
-     * Method ini digunakan untuk menambah customer.
+     * untuk menambahkan data customer.
      *
-     * @param baru sebagai penanda pelanggan baru
-     * @return true/false
+     * @return true
      */
-    public static boolean addCustomer(Customer baru) throws PelangganSudahAdaException
-    {
-        for (int i = 0; i < CUSTOMER_DATABASE.size(); i++) {
-            Customer tes = CUSTOMER_DATABASE.get(i);
-            if (tes.getID()== baru.getID()||tes.getEmail().equals(baru.getEmail())){
-                throw new PelangganSudahAdaException(baru);
+    public static boolean addCustomer(Customer baru) throws PelangganSudahAdaException {
+
+        for(Customer pelanggan : CUSTOMER_DATABASE)
+        {
+            if(pelanggan.getID() == baru.getID() ||
+                    pelanggan.getEmail().equals(baru.getEmail()))
+            {
+                throw new PelangganSudahAdaException(pelanggan);
+
             }
         }
-        LAST_CUSTOMER_ID=baru.getID();
         CUSTOMER_DATABASE.add(baru);
+        LAST_CUSTOMER_ID = baru.getID();
         return true;
     }
 
+
     /**
-     * Method ini digunakan untuk mengambil pelanggan
+     *digunakan untuk mendapatkan customer dengan id yang ditentukan
      *
-     * @param id  sebagai penanda ID pelanggan yang akan diambil
-     * @return cari sebagai objek dari pelanggan yang dipanggil
+     * @param id menentukan id customer
+     * @return customer
      */
-    public static Customer getCustomer(int id)
-    {
-        for (int i = 0; i < CUSTOMER_DATABASE.size(); i++) {
-            Customer tes = CUSTOMER_DATABASE.get(i);
-            if (tes.getID()==id){
-                return tes;
+    public static Customer getCustomer(int id) {
+        for(Customer pelanggan : CUSTOMER_DATABASE)
+        {
+            if(pelanggan.getID() == id)
+            {
+                return pelanggan;
             }
         }
-        return null;
-    }
 
-    public static Customer getCustomerLogin(String email, String password)
-    {
-        for (int i = 0; i < CUSTOMER_DATABASE.size(); i++) {
-            Customer tes = CUSTOMER_DATABASE.get(i);
-            if (tes.getEmail().equals(email)&&tes.getPassword().equals(password)){
-                return tes;
-            }
-        }
         return null;
     }
 
 
     /**
-     * Method ini digunakan untuk menghapus customer.
+     * digunakan untuk mendapatkan customer yang login
      *
-     * @param id sebagai penanda ID pelanggan baru
-     * @return true/false
+     * @param email menentukan nilai email
+     * @param password menentukan nilai password
+     * @return customer
+     */
+    public static Customer getCustomerLogin(String email, String password) {
+       /*
+        for (int i = 0; i < CUSTOMER_DATABASE.size(); i++) {
+            Customer tes = CUSTOMER_DATABASE.get(i);
+            if (tes.getEmail().equals(email)  && tes.getPassword().equals(password)){
+                return tes;
+            }
+        }
+        return null;
+*/
+        for(Customer cust : CUSTOMER_DATABASE){
+            if (cust.getEmail().equals(email) && cust.getPassword().equals(password))
+            {
+                return cust;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * digunakan untuk menghapus data customer.
+     *
+     * @return true
      */
     public static boolean removeCustomer(int id) throws PelangganTidakDitemukanException
     {
+
         for (int i = 0; i < CUSTOMER_DATABASE.size(); i++) {
             Customer tes = CUSTOMER_DATABASE.get(i);
             if (tes.getID()==id){
@@ -108,5 +121,8 @@ public class DatabaseCustomer
         }
         throw new PelangganTidakDitemukanException(id);
     }
+
+
+
 
 }

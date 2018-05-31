@@ -1,5 +1,6 @@
 package jhotel;
 import java.util.ArrayList;
+import java.util.*;
 
 /**
  * Kelas ini menjelaskan tentang Database Pesanan yang berisi cara memsan kamar baru, remove pesanan, dan lainnya.

@@ -27,36 +27,6 @@ public class Lokasi
     }
 
     /**
-     * Method ini digunakan untuk mengubah nilai koordinat x.
-     *
-     * @param x_coord koordinat x
-     */
-    public void setX(float x_coord)
-    {
-        this.x_coord = x_coord;
-    }
-
-    /**
-     * Method ini digunakan untuk mengubah nilai koordinat y.
-     *
-     * @param y_coord koordinat y
-     */
-    public void setY(float y_coord)
-    {
-        this.y_coord = y_coord;
-    }
-
-    /**
-     * Method ini digunakan untuk mengubah deskripsi lokasi.
-     *
-     * @param deskripsi deskripsi lokasi
-     */
-    public void setDeskripsi(String deskripsi)
-    {
-        deskripsiLokasi = deskripsi;
-    }
-
-    /**
      * Method ini digunakan untuk mendapatkan nilai koordinat x.
      *
      * @return x_coord
@@ -87,6 +57,36 @@ public class Lokasi
     }
 
     /**
+     * Method ini digunakan untuk mengubah nilai koordinat x.
+     *
+     * @param x_coord koordinat x
+     */
+    public void setX(float x_coord)
+    {
+        this.x_coord = x_coord;
+    }
+
+    /**
+     * Method ini digunakan untuk mengubah nilai koordinat y.
+     *
+     * @param y_coord koordinat y
+     */
+    public void setY(float y_coord)
+    {
+        this.y_coord = y_coord;
+    }
+
+    /**
+     * Method ini digunakan untuk mengubah deskripsi lokasi.
+     *
+     * @param deskripsi deskripsi lokasi
+     */
+    public void setDeskripsi(String deskripsi)
+    {
+        deskripsiLokasi = deskripsi;
+    }
+
+    /**
      * Method ini digunakan untuk menampilkan koordinat
      * dan deskripsi lokasi.
      *
@@ -95,8 +95,8 @@ public class Lokasi
     public String toString()
     {
         return  "Lokasi"+
-                "\nKoordinat X : " + x_coord +
-                "\nKoordinat Y : " + y_coord +
+                "\nKoordinat X       : " + x_coord +
+                "\nKoordinat Y       : " + y_coord +
                 "\nDeskripsiLokasi   : " + deskripsiLokasi;
     }
 }

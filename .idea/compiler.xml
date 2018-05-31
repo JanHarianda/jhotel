@@ -4,6 +4,8 @@
     <bytecodeTargetLevel>
       <module name="jhotel---JanHariandaBarus_main" target="1.8" />
       <module name="jhotel---JanHariandaBarus_test" target="1.8" />
+      <module name="jhotel_main" target="1.8" />
+      <module name="jhotel_test" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
