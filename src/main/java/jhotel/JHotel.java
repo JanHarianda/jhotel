@@ -1,72 +1,46 @@
 package jhotel;
+
 import java.util.Date;
 import java.util.Calendar;
 import java.text.*;
 import java.util.GregorianCalendar;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-@SpringBootApplication
-
 /**
- * Kelas utama dari package JHotel
+ * class JHotel sebagai class utama
  *
- * @author Jan Harianda Barus
- * @version April 26, 2018
+ * @author Fahmi FF
+ * @version 20-05-2018
  */
-
-public class JHotel
-{
+@SpringBootApplication
+public class JHotel {
     /**
-     * Main method dari project
-     * @param args digunakan sebagai argumen saat menjalankan program
+     * method ini digunakan untuk menjalankan perintah main
+     *
+     * @param args argumen
      */
 
-    public static void main(String args[])
-    {
-        Lokasi test1 = new Lokasi(1, 2, "lokasi1");
-        Hotel hotel1 = new Hotel("Margocity",test1,5);
-        try
-        {
-            DatabaseHotel.addHotel(hotel1);
-        } catch (HotelSudahAdaException e)
-        {
-            System.out.println(e.getPesan());
-        }
-        Room A101 = new SingleRoom(hotel1, "A101");
-        A101.setDailyTariff(50000);
-        try
-        {
-            DatabaseRoom.addRoom(A101);
-        } catch (RoomSudahAdaException test)
-        {
-            System.out.println(test.getPesan());
+    public static void main(String args[]) {
+        //menambahkan objek hotel ke database
+        try {
+            DatabaseHotel.addHotel(new Hotel("Margocity", new Lokasi(1, 2, "Depok"), 6));
+
+        } catch (HotelSudahAdaException e) {
+            e.getPesan();
         }
 
-        Room B202 = new DoubleRoom(hotel1, "B202");
-        B202.setDailyTariff(100000);
-        try
-        {
-            DatabaseRoom.addRoom(B202);
-        } catch (RoomSudahAdaException test)
-        {
-            System.out.println(test.getPesan());
-        }
-
-        Room C303 = new PremiumRoom(hotel1, "C303");
-        C303.setDailyTariff(69000);
-        try
-        {
-            DatabaseRoom.addRoom(C303);
-        } catch (RoomSudahAdaException test)
-        {
-            System.out.println(test.getPesan());
+        try {
+            DatabaseRoom.addRoom(new SingleRoom(DatabaseHotel.getHotel(1), "S.301"));
+            DatabaseRoom.addRoom(new DoubleRoom(DatabaseHotel.getHotel(1), "D.301"));
+            DatabaseRoom.addRoom(new DoubleRoom(DatabaseHotel.getHotel(1), "D.302"));
+        } catch (RoomSudahAdaException e) {
+            e.getPesan();
         }
 
         SpringApplication.run(JHotel.class, args);
-
     }
-    public JHotel()
-    {
 
+    public JHotel() {
+        // initialise instance variables
     }
 }

@@ -1,49 +1,80 @@
 package jhotel;
 import java.util.ArrayList;
-import java.util.*;
 
 /**
- * Kelas ini menjelaskan tentang Database Pesanan yang berisi cara memsan kamar baru, remove pesanan, dan lainnya.
+ * Kelas ini untuk menunjukkan informasi mengenai Data Pesanan Hotel
  *
- * @author (Jan Harianda Barus)
- * @version (April 18, 2018)
+ * @author Jan Harianda
+ * @version 20-05-2018
  */
 public class DatabasePesanan
 {
-    /*
-     * Deklarasi variable
-     */
+    //private static String[] list_pesanan;
     private static ArrayList<Pesanan> PESANAN_DATABASE = new ArrayList<Pesanan>();
     private static int LAST_PESANAN_ID = 0;
-    private static String[] list_pesanan;
+
+
 
     /**
-     * Method untuk mengambil seluruh database pesanan
+     * method yang digunakan untuk membuat arraylist berisi pesanan
      *
      * @return PESANAN_DATABASE
      */
-    public static ArrayList<Pesanan> getPesananDatabase(){
+    public static ArrayList<Pesanan> getPesananDatabase()
+    {
         return PESANAN_DATABASE;
     }
 
     /**
-     * Method untuk mendapatkan id pesanan terakhir
+     * digunakan untuk mendapatkan ID dari pesanan terakhir
      *
      * @return LAST_PESANAN_ID
      */
-    public static int getLastPesananId(){
+    public static int getLastPesananID()
+    {
         return LAST_PESANAN_ID;
     }
 
     /**
-     * Metode untuk menambah pesanan
+     * method ini digunakan untuk menambah pesanan baru ke database
      *
-     * @param baru pesanan baru
-     * @throws PesananSudahAdaException exeption pesanan kalo udah ada
+     *
+     * @param baru
      *
      */
     public static boolean addPesanan(Pesanan baru) throws PesananSudahAdaException
     {
+        /*
+        if(PESANAN_DATABASE.contains(baru))
+        {
+            if(baru.getStatusAktif())
+            {
+                throw new PesananSudahAdaException(baru);
+            }
+            else
+            {
+                LAST_PESANAN_ID = baru.getID();
+                PESANAN_DATABASE.add(baru);
+                return true;
+            }
+        }
+        else
+        {
+            LAST_PESANAN_ID = baru.getID();
+            PESANAN_DATABASE.add(baru);
+            return true;
+        }
+
+        PART 2
+        for(Pesanan pesan : PESANAN_DATABASE){
+            if(pesan.getStatusAktif() && pesan.getID() == baru.getID()){
+                throw new PesananSudahAdaException(baru);
+            }
+        }
+        LAST_PESANAN_ID = baru.getID();
+        PESANAN_DATABASE.add(baru);
+        return true;
+        */
         for(Pesanan pesanan : PESANAN_DATABASE)
         {
             if(pesanan.getID() == baru.getID())
@@ -67,68 +98,16 @@ public class DatabasePesanan
     }
 
     /**
-     * Metode untuk menghapus pesanan
+     * Digunakan untuk mengambil data pemesan
      *
-     * @param pesan pesanan
-     * @throws PesananTidakDitemukanException exeption jika pesanan tidak ada
-     *
-     */
-    public static boolean removePesanan(Customer pesan) throws PesananTidakDitemukanException
-    {
-        for (int i = 0; i < PESANAN_DATABASE.size(); i++) {
-            Pesanan tes = PESANAN_DATABASE.get(i);
-            if (tes.getPelanggan().equals(pesan)){
-                if(tes.getRoom() != null)
-                {
-                    Administrasi.pesananDibatalkan(tes);
-                }
-                else
-                {
-                    if(tes.getStatusAktif())
-                    {
-                        tes.setStatusAktif(false);
-                    }
-                }
-
-                if(PESANAN_DATABASE.remove(tes))
-                {
-                    return true;
-                }
-            }
-        }
-        throw new PesananTidakDitemukanException(pesan);
-    }
-
-    /**
-     * Metode untuk mengambil pesanan berdasarkan id
-     *
-     * @param id id pesanan
-     * @return tes pesanan terpilih
-     *
+     * @param id
+     * @return pesanan mengembalikan data pemesanan jika id yang dipesan telah ada.
      */
     public static Pesanan getPesanan(int id)
     {
-        for (int i = 0; i < PESANAN_DATABASE.size(); i++) {
-            Pesanan tes = PESANAN_DATABASE.get(i);
-            if (tes.getID()==id){
-                return tes;
-            }
-        }
-        return null;
-    }
-
-    /**
-     * Metode untuk mengambil pesanan berdasarkan kamar
-     *
-     * @param kamar kamar pesanan
-     * @return pesanan pesanan terpilih
-     *
-     */
-    public static Pesanan getPesananAktif(Room kamar)
-    {
         for(Pesanan pesanan : PESANAN_DATABASE)
         {
-            if(pesanan.getRoom().equals(kamar) && pesanan.getStatusAktif())
+            if(pesanan.getID() == id)
             {
                 return pesanan;
             }
@@ -138,20 +117,84 @@ public class DatabasePesanan
     }
 
     /**
-     * Metode untuk mengambil pesanan berdasarkan customer
+     * Digunakan Untuk mengambil data pemesanan.
      *
-     * @param pelanggan customer pesanan
-     * @return tes pesanan terpilih
+     * @return Pesanan mengembalikan data pemesanan jika Room yang dipesan telah ada.
+     */
+    public static Pesanan getPesananAktif(Room kamar)
+    {
+        for(Pesanan pesanan : PESANAN_DATABASE)
+        {
+            if(pesanan.getRoom().equals(kamar)&& pesanan.getStatusAktif())
+            {
+                return pesanan;
+            }
+        }
+
+        return null;
+    }
+
+
+
+    /**
+     * method ini digunakan untuk mendapatkan data pesanan aktif
      *
+     * @param pelanggan
+     * @return pesanan
      */
     public static Pesanan getPesananAktif(Customer pelanggan)
     {
-        for (int i = 0; i < PESANAN_DATABASE.size(); i++) {
-            Pesanan tes = PESANAN_DATABASE.get(i);
-            if (tes.getStatusAktif()==true&&tes.getPelanggan().equals(pelanggan)){
-                return tes;
+        for(Pesanan pesanan : PESANAN_DATABASE)
+        {
+            if(pesanan.getPelanggan().equals(pelanggan) && pesanan.getStatusAktif()==true)
+            {
+                return pesanan;
+                /*
+                if(pesanan.getStatusAktif() == true)
+                {
+                    return pesanan;
+                }
+                */
             }
         }
+
         return null;
     }
+
+    /**
+     * digunakan untuk menghapus pesanan dari database.
+     *
+     * @param pesan berisi objek pesanan.
+     */
+    public static boolean removePesanan(Customer pesan) throws PesananTidakDitemukanException
+    {
+        for(Pesanan pesanan : PESANAN_DATABASE)
+        {
+            if(pesanan.equals(pesan))
+            {
+                if(pesanan.getRoom() != null)
+                {
+                    Administrasi.pesananDibatalkan(pesanan);
+                }
+                else
+                {
+                    if(pesanan.getStatusAktif())
+                    {
+                        pesanan.setStatusAktif(false);
+                    }
+                }
+
+                if(PESANAN_DATABASE.remove(pesanan))
+                {
+                    return true;
+                }
+            }
+        }
+
+        throw new PesananTidakDitemukanException(pesan);
+    }
+
+
+
+
 }

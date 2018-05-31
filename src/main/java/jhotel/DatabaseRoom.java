@@ -1,29 +1,36 @@
 package jhotel;
 
 import java.util.ArrayList;
-
 /**
- * Kelas inii berisi Database Room
- * 
- * @author (Jan Harianda Barus)
- * @version (April 18, 2018)
+ * Class yang erisi database ruangan hotel
+ *
+ * @author Jan Harianda
+ * @version 2018.05.20
  */
 public class DatabaseRoom
 {
+
+    //private static String[]  list_room;
     private static ArrayList<Room> ROOM_DATABASE = new ArrayList<Room>();
 
     /**
-     * Method ini digunakan untuk menambah kamar.
+     * Digunakan untukvmembuat arraylist berisi room
      *
-     * @param  baru dengan tipe data Customer
-     * @return false
+     * @return ROOM_DATABASE
      */
-
-    public static boolean addRoom(Room baru) throws RoomSudahAdaException
+    public static ArrayList<Room> getRoomDatabase()
     {
-        for (int i = 0; i < ROOM_DATABASE.size(); i++) {
-            Room tes = ROOM_DATABASE.get(i);
-            if (tes.getHotel().equals(baru.getHotel())&&tes.getNomorKamar()==baru.getNomorKamar()){
+        return ROOM_DATABASE;
+    }
+
+    /**
+     * Digunakan untuk menambahkan database room
+     *
+     * @param baru berisi objek Room
+     */
+    public static boolean addRoom(Room baru) throws RoomSudahAdaException{
+        for(Room cari : ROOM_DATABASE){
+            if(cari.getHotel().equals(baru.getHotel()) && cari.getNomorKamar().equals(baru.getNomorKamar())) {
                 throw new RoomSudahAdaException(baru);
             }
         }
@@ -32,74 +39,93 @@ public class DatabaseRoom
     }
 
     /**
-     * Method ini digunakan untuk mengambil nomor hotel
+     * digunakan untuk mengambil database room berdasarkan hotel dan nomor kamar
      *
-     * @param hotel hotel
-     * @param nomor_kamar nomor kamar
-     * @return null
+     * @param hotel berisi hotel
+     * @param nomor_kamar berisi nomor kamar
+     * @return tes
      */
     public static Room getRoom(Hotel hotel, String nomor_kamar){
+        /*
         for (int i = 0; i < ROOM_DATABASE.size(); i++) {
             Room tes = ROOM_DATABASE.get(i);
-            if (tes.getHotel().equals(hotel)&&tes.getNomorKamar().equals(nomor_kamar)){
+            if (tes.getHotel().equals(hotel) && tes.getNomorKamar().equals(nomor_kamar)){
                 return tes;
             }
         }
         return null;
     }
-
-    /**
-     *
-     * Method ini digunakan untuk mengambul nilai kamar dari hotel
-     *
-     * @param hotel hotel
-     * @return roomsFromHotel
-     */
-    public static ArrayList<Room> getRoomsFromHotel(Hotel hotel){
-        ArrayList<Room> REQUEST_ROOM = new ArrayList<Room>();
-        for (int i = 0; i < ROOM_DATABASE.size(); i++) {
-            Room tes = ROOM_DATABASE.get(i);
-            if (tes.getHotel().equals(hotel)){
-                REQUEST_ROOM.add(tes);
+    */
+        for(Room kamar : ROOM_DATABASE)
+        {
+            if(kamar.getHotel().equals(hotel) && kamar.getNomorKamar().equals(nomor_kamar))
+            {
+                return kamar;
             }
         }
-        return REQUEST_ROOM;
+
+        return null;
+    }
+
+
+    /**
+     * digunakan untuk mendapatkan arraylist room yang berasal dari hotel
+     *
+     * @param hotel berisi objek Hotel
+     * @return tempRoom
+     */
+    public static ArrayList<Room> getRoomsFromHotel(Hotel hotel)
+    {
+        ArrayList<Room> tempRoom = new ArrayList<Room>();
+
+        for(Room kamar : ROOM_DATABASE)
+        {
+            if(kamar.getHotel().equals(hotel))
+            {
+                tempRoom.add(kamar);
+            }
+        }
+
+        return tempRoom;
     }
 
     /**
-     * Method ini digunakan untuk mengambil vacant room
+     * digunakan untuk mengambil arraylist dari vacant room
      *
-     * @return vacant rooms
+     * @return tempRoom
      */
-    public static ArrayList<Room> getVacantRooms(){
-        ArrayList<Room> REQUEST_ROOM = new ArrayList<Room>();
-        for (int i = 0; i < ROOM_DATABASE.size(); i++) {
-            Room tes = ROOM_DATABASE.get(i);
-            if (tes.getStatusKamar()==StatusKamar.VACANT){
-                REQUEST_ROOM.add(tes);
+    public static ArrayList<Room> getVacantRooms()
+    {
+        ArrayList<Room> tempRoom = new ArrayList<Room>();
+
+        for(Room kamar : ROOM_DATABASE)
+        {
+            if(kamar.getStatusKamar().equals(StatusKamar.VACANT))
+            {
+                tempRoom.add(kamar);
             }
         }
-        return REQUEST_ROOM;
+
+        return tempRoom;
     }
 
     /**
-     * Method ini digunakan untuk menghapus ruangan.
+     * digunakan unruk menghapus room dari database
      *
-     * @param hotel hotel pemilik kamar
-     * @param nomor_kamar nomor kamar
-     * @return boolean false
+     * @param hotel berisi objek Hotel
+     * @param nomor_kamar berisi nomor kamar
+     * @return true
      */
     public static boolean removeRoom(Hotel hotel, String nomor_kamar) throws RoomTidakDitemukanException
     {
-        for (int i = 0; i < ROOM_DATABASE.size(); i++) {
-            Room tes = ROOM_DATABASE.get(i);
-            if (tes.getHotel().equals(hotel)&&tes.getNomorKamar()==nomor_kamar){
-                if(DatabasePesanan.getPesananAktif(tes) != null)
-                {
-                    Administrasi.pesananDibatalkan(tes);
-                }
 
-                if(ROOM_DATABASE.remove(tes))
+        for(Room kamar : ROOM_DATABASE)
+        {
+            if(kamar.getHotel().equals(hotel) &&
+                    kamar.getNomorKamar().equals(nomor_kamar))
+            {
+                Administrasi.pesananDibatalkan(kamar);
+                if(ROOM_DATABASE.remove(kamar))
                 {
                     return true;
                 }
@@ -108,14 +134,5 @@ public class DatabaseRoom
         throw new RoomTidakDitemukanException(hotel, nomor_kamar);
     }
 
-    /**
-     * Method ini digunakan untuk mengambil database kamar.
-     *
-     * @return null
-     */
-    public static ArrayList<Room> getRoomDatabase()
-    {
-        return ROOM_DATABASE;
-    }
 
 }

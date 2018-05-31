@@ -19,6 +19,7 @@ public class SingleRoom extends Room
     public SingleRoom(Hotel hotel, String nomor_kamar)
     {
         super(hotel, nomor_kamar);
+        setDailyTariff(100000);
     }
 
     /**
@@ -29,5 +30,15 @@ public class SingleRoom extends Room
     public TipeKamar getTipeKamar()
     {
         return TIPE_KAMAR;
+    }
+
+    /**
+     * menentukan nilai daily tarif
+     *
+     * @param dailytariff nilai daily tariff
+     */
+    public void setDailyTariff(double dailytariff)
+    {
+        dailyTariff = dailytariff;
     }
 }

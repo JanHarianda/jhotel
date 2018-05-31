@@ -113,7 +113,9 @@ public class Customer
     {
         DateFormat formatter = new SimpleDateFormat("'DOB : 'dd MMMM yyyy");
         String output = formatter.format(dob);
-        System.out.println(output);
+
+        System.out.print(output);
+
         return dob;
     }
     /**
@@ -130,7 +132,7 @@ public class Customer
      * @param id input yang dimasukkan untuk mengubah nilai ID pelanggan.
      */
 
-    public void setID(int id)
+    public void setId(int id)
     {
         this.id = id;
     }
@@ -151,16 +153,19 @@ public class Customer
      * @param email input yang dimasukkan untuk mengubah email pelanggan.
      */
 
-    public void setEmail(String email)
-    {
+    public void setEmail(String email){
         String pattern =
                 "^[_&*_~A-Za-z0-9-\\+]+(\\.[_&*_~A-Za-z0-9-]+)*@[A-Za-z0-9][A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
-        Pattern r = Pattern.compile(pattern);
-        Matcher m = r.matcher(email);
+
+        Pattern p = Pattern.compile(pattern);
+        Matcher m = p.matcher(email);
 
         if (m.matches()){
             this.email = email;
         }
+        else {
+            System.out.println("Salah");
+            this.email=null;}
 
     }
 

@@ -20,6 +20,7 @@ public class DoubleRoom extends Room
     public DoubleRoom(Hotel hotel, String nomor_kamar)
     {
         super(hotel, nomor_kamar);
+        setDailyTariff(500000);
     }
 
     /**

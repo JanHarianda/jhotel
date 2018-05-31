@@ -37,7 +37,7 @@ public class Pesanan
         this.pelanggan = pelanggan;
         tanggalPesan = new Date();
         //biaya = kamar.getDailyTariff() * jumlahHari;
-        id = DatabasePesanan.getLastPesananId() + 1;
+        id = DatabasePesanan.getLastPesananID() + 1;
         isAktif = true;
         tanggalPesan = new Date();
     }
